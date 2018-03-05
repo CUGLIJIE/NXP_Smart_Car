@@ -1,0 +1,44 @@
+#ifndef _SPEED_CONTROL_H
+#define _SPEED_CONTROL_H
+#include "headfile.h"
+
+//#define TOO_FAR (distanceBetweenTheTwoCars > avg_distance_between_the_two_cars + diff_distance_max)
+//#define EXT_FAR (distanceBetweenTheTwoCars > avg_distance_between_the_two_cars + 2 * diff_distance_max)
+//#define TOO_CLOSE (distanceBetweenTheTwoCars < avg_distance_between_the_two_cars - diff_distance_max)
+//#define EXT_CLOSE (distanceBetweenTheTwoCars < avg_distance_between_the_two_cars - 2 * diff_distance_max)
+
+#define SPEED_BUF_SIZE 5
+typedef struct _PID {
+    int16_t currentValue;
+    int16_t valueBuf[SPEED_BUF_SIZE];
+    uint8_t cursor;
+    int16_t targetValue;
+    double kp;
+    double ki;
+    double kd;
+    int16_t lastError;
+    int16_t prevError;
+    int16_t sumError;
+    double output;
+}
+PID;
+
+
+void SpeedControlProc(int16_t leftSpeed, int16_t rightSpeed);
+
+void SpeedTargetSet(uint16_t imgProcFlag) ;
+
+extern PID leftPid, rightPid;
+extern int16_t leftSpeed, rightSpeed;
+extern int16_t speed_control_sum_err_max;
+extern bool speed_control_on;
+extern int16_t speed_control_speed;
+extern int16_t speed_control_acc;
+extern int16_t speed_control_dec;
+extern float reduction_ratio;
+extern float differential_ratio;
+extern bool stop;
+extern int16_t speedAroundBarrier;
+extern int16_t speedInRing;
+
+#endif
