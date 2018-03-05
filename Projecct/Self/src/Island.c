@@ -6,8 +6,11 @@ uint8 jumping=0; //环岛进程需用
 bool island_entrance;
 int32_t IslandDistance;
 int32_t IslandOutDistance;
+int32_t IslandleaveDistance;
 extern bool IslandInflag;
 extern uint16_t speedcontrol;
+
+bool Islandleaveflag=FALSE;
 
 uint8_t leftjumpout=0;
 uint8_t leftmidblackcol=0;
@@ -17,6 +20,7 @@ bool leftjumpoutflag=FALSE;
 bool leftmidblackflag=FALSE;
 bool leftIslandOutflag=FALSE;
 bool IslandOutDistanceCountFlag=FALSE ;
+bool IslandleaveDistanceCountFlag=FALSE ;
 
 
 uint8_t SecondEntranceInflexionRow=0;
@@ -222,23 +226,24 @@ bool IslandSecondEntrance_judge()
 		}		
 	
 }
+
 bool IslandOut_judge()
 {
-	if(IslandInflag)
+	if(IslandInflag&&!IslandleaveDistanceCountFlag)
 	{		
-		   BUZZLE_OFF;
 			IslandOutjudge();
 		    
 			if(leftIslandOutflag)
 			{
 				 IslandOutDistanceCountFlag=TRUE ;
 				 leftIslandOutflag=FALSE;
-				if(IslandOutDistance>4000)
+				if(IslandOutDistance>4000)//检测到出口记一段距离，这段距离内补出口线
 				{
 					 IslandOutDistance=0;
-					 IslandInflag=FALSE;
+					 IslandleaveDistanceCountFlag=TRUE;
 					 IslandOutDistanceCountFlag=FALSE ;
-					 BUZZLE_OFF;
+					 Islandleaveflag=TRUE;
+					 BUZZLE_OFF; 
 				}
 
 				 return TRUE;
@@ -248,6 +253,25 @@ bool IslandOut_judge()
 				 return FALSE;
 			}
 	 
+	}
+	else if(IslandInflag&&IslandleaveDistanceCountFlag)
+	{
+		if(IslandSecondEntrance_judge())
+		{
+			IslandSecondEntranceOutProc();
+			if(IslandleaveDistance>4000)//再次检测到第二个入口，记一段距离，补右边界
+			{
+				IslandleaveDistanceCountFlag=FALSE ;
+				IslandleaveDistance=0;
+				IslandInflag=FALSE;
+				Islandleaveflag=FALSE;
+			}	
+			return TRUE;
+		}	
+    else
+	 {
+	    return FALSE;
+   }		
 	}
 	else 
 	{
@@ -309,6 +333,19 @@ void IslandSecondEntranceProc()
 	}
 }
 
+void IslandSecondEntranceOutProc()
+{
+	if(SecondEntranceInflexionFlag)
+	{
+		SecondEntranceInflexionFlag=FALSE;
+		for(uint8_t row=ROW>>1;row>SecondEntranceInflexionRow;row--)
+		{
+			resultSet.rightBorder[row]=resultSet.rightBorder[ROW>>1]-((resultSet.rightBorder[ROW>>1]-SecondEntranceInflexionCol)/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
+			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
+		}
+	}
+}
+
 /****************************************/
 /****************************************/
 void IslandOutjudge()
@@ -338,7 +375,7 @@ void IslandOutjudge()
 	
 	if(leftjumpoutflag)
 	{
-		leftmidtemp=resultSet.middleLine[leftjumpout+5]+30;
+		leftmidtemp=resultSet.middleLine[leftjumpout+5]+40;
 		for(uint8_t r=leftjumpout+5;r>1;r--)//跳变点往下X行，该行中心点往右X行开始往上搜
 		{
 			if(image_binary[r][leftmidtemp]==0x00   
@@ -346,6 +383,7 @@ void IslandOutjudge()
 			 &&image_binary[r-1][leftmidtemp-3]==0x00)
 			{
 				leftmidblackcol=leftmidtemp;
+//				leftmidblackcol=COL;
 				leftmidblackrow=r;
 				leftmidblackflag=TRUE;
 				leftIslandOutflag=TRUE;

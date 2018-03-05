@@ -8,9 +8,12 @@ bool Island_judge(void);
 void IslandActionGoright(void);
 extern int32_t IslandDistance;
 extern int32_t IslandOutDistance;
+extern int32_t IslandleaveDistance;
  extern bool island_entrance;
 extern  bool IslandDistanceCountFlag ;
 extern  bool IslandOutDistanceCountFlag ;
+extern  bool IslandleaveDistanceCountFlag ;
+extern  bool Islandleaveflag;
  void IslandActionGomiddle(void);
  void IslandOutProc(void);
  void IslandOutjudge(void);
@@ -19,6 +22,8 @@ extern  bool IslandOutDistanceCountFlag ;
 void IslandSecondEntrancejudge(void);
 void IslandSecondEntranceProc(void);
 bool IslandSecondEntrance_judge(void);
+
+void IslandSecondEntranceOutProc(void);
 #endif
 
 

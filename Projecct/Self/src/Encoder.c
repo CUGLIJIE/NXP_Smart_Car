@@ -58,6 +58,10 @@ void distancecontrol(){
 		{
 			   IslandOutDistance += dist;
 		}
+		else if(IslandleaveDistanceCountFlag)
+		{
+			   IslandleaveDistance += dist;
+		}
 		
 }
 

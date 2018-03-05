@@ -12,7 +12,11 @@ uint8_t get_rode_type(){
 	{
 		return IsOutOfRoad()?Outside:IsStartLine(pre_sight)?Startline:Island_judge()?Island_in:IsCrossRoad()?CrossRoad:IsStraightLine()?Straight:WhichCurve() ;	 
 	}
-	else 
+	else if(Islandleaveflag==TRUE)
+	{
+		return IslandOut_judge()?Island_out:FALSE;
+	}
+	else if(IslandInflag==TRUE&&Islandleaveflag==FALSE)
 	{
 		return IslandSecondEntrance_judge()?Island_SecondEntrance:IslandOut_judge()?Island_out:FALSE;
 	}
@@ -36,7 +40,7 @@ void Summarycontrol(){
 								  CrossRoadAction() ; 
 		 break;
 		 case  Island_in: 
-									speedcontrol=60;
+//									speedcontrol=60;
 //								  BUZZLE_ON;
 									OLEDPrintf(1,6, "Island_in") ;
 									IslandInflag=TRUE ;
@@ -47,7 +51,15 @@ void Summarycontrol(){
 									IslandSecondEntranceProc();
 	   break;
 		 case  Island_out:
-									IslandOutProc();
+									 if(IslandInflag&&!IslandleaveDistanceCountFlag)
+									 {
+										 IslandOutProc();
+									 }
+									 else  if(IslandInflag&&IslandleaveDistanceCountFlag)
+									 {
+										 ;
+									 }
+									
 	   break;
 			 
 		 case Straight:
