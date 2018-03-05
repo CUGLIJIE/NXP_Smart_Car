@@ -4,10 +4,10 @@ uint8 Roundaboutstep=0;
 uint8 Roundabout=0;
 uint8 jumping=0; //环岛进程需用
 bool island_entrance;
-bool IslandDistanceCountFlag=FALSE ;
 int32_t IslandDistance;
+int32_t IslandOutDistance;
 extern bool IslandInflag;
-
+extern uint16_t speedcontrol;
 
 uint8_t leftjumpout=0;
 uint8_t leftmidblackcol=0;
@@ -16,11 +16,13 @@ uint8_t leftmidtemp=0;
 bool leftjumpoutflag=FALSE;
 bool leftmidblackflag=FALSE;
 bool leftIslandOutflag=FALSE;
+bool IslandOutDistanceCountFlag=FALSE ;
 
 
 uint8_t SecondEntranceInflexionRow=0;
 uint8_t SecondEntranceInflexionCol=0;
 bool    SecondEntranceInflexionFlag=FALSE;
+bool IslandDistanceCountFlag=FALSE ;
 
 void IsRoundabout()
 {
@@ -190,7 +192,6 @@ bool Island_judge(){
 
 bool IslandSecondEntrance_judge()
 {
-//	OLEDPrintf(100,6, "%d",IslandDistance) ;
 	if(IslandDistance>1000&&IslandDistance<4000)
 	{
 		IslandActionGomiddle();
@@ -198,15 +199,13 @@ bool IslandSecondEntrance_judge()
 	
  if(IslandDistance>4000)
 	{
-		IslandDistance=800;
+		IslandDistance=0;
 		IslandDistanceCountFlag=FALSE;
 		
 	}
 	
-	 if(IslandInflag&&IslandDistance==800)
-	{
-	
-			
+	 if(IslandInflag&&IslandDistance==0)
+	{	
 			IslandSecondEntrancejudge();
 			if(SecondEntranceInflexionFlag)
 			{
@@ -223,7 +222,6 @@ bool IslandSecondEntrance_judge()
 		}		
 	
 }
-int Islandcount=0;
 bool IslandOut_judge()
 {
 	if(IslandInflag)
@@ -233,12 +231,14 @@ bool IslandOut_judge()
 		    
 			if(leftIslandOutflag)
 			{
-				Islandcount++;
+				 IslandOutDistanceCountFlag=TRUE ;
 				 leftIslandOutflag=FALSE;
-				if(Islandcount>7)
+				if(IslandOutDistance>4000)
 				{
-					   Islandcount=0;
-						 IslandInflag=FALSE;
+					 IslandOutDistance=0;
+					 IslandInflag=FALSE;
+					 IslandOutDistanceCountFlag=FALSE ;
+					 BUZZLE_OFF;
 				}
 
 				 return TRUE;
@@ -338,7 +338,7 @@ void IslandOutjudge()
 	
 	if(leftjumpoutflag)
 	{
-		leftmidtemp=resultSet.middleLine[leftjumpout+5]+20;
+		leftmidtemp=resultSet.middleLine[leftjumpout+5]+30;
 		for(uint8_t r=leftjumpout+5;r>1;r--)//跳变点往下X行，该行中心点往右X行开始往上搜
 		{
 			if(image_binary[r][leftmidtemp]==0x00   

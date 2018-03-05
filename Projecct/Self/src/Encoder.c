@@ -50,9 +50,15 @@ void MainProc() {
 //±‡¬Î∆˜º«æ‡¿Î 
 void distancecontrol(){
      int16_t dist = (leftSpeed + rightSpeed) / 2;
-	  if(IslandDistanceCountFlag){
+	  if(IslandDistanceCountFlag)
+		{
 		     IslandDistance += dist;
-		}	
+		}
+		else if(IslandOutDistanceCountFlag)
+		{
+			   IslandOutDistance += dist;
+		}
+		
 }
 
 

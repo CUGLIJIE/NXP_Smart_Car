@@ -6,22 +6,24 @@ int16_t startLineWidth=100;
  bool IsOutOfRoad() {
     uint16 cnt = 0;
      static  uint8_t yt;
-	  for(uint8 row = 55; row >50; --row )
-        for(uint8 col = 50; col < 140; ++col) {
-            if(image_binary[row][col]==0x00) {
-                ++cnt;
-            }
-						
-					
+	  for(uint8 row = 55; row >53; --row )
+	  {
+        for(uint8 col = 50; col < 140; ++col) 
+	     {
+					if(image_binary[row][col]==0x00) 
+						{
+							++cnt;
+						}
         }
-        if(cnt >100){
+		}
+        if(cnt >150){
 					++yt;
 				
 				}	
-				if(yt>4){
+				if(yt>=6)
+				{
 					yt=0;
 					return TRUE;
-				
 				}
         else 
 				return FALSE;
