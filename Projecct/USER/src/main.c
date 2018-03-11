@@ -1,5 +1,9 @@
 #include "headfile.h"
 #include "Island.h"
+#include "Flash_Date.h"
+
+extern _Island_ LeftIsland;
+extern _Island_ RightIsland;
 
 void BuzzleInit()
 {
@@ -23,19 +27,19 @@ int main(void)
 	  pit_init_ms(pit0,5);
     enable_irq(PIT0_IRQn);
     EnableInterrupts;
-	  		
 	
+	 	
 	for(;;)
 	{
 		if(mt9v032_finish_flag)
 			{
 				binaryzation((uint8_t *)image);
-				//seekfree_sendimg_032();
+//				seekfree_sendimg_032();
 				ImgProc();
-//				IslandOutjudge();
-//				IslandOutProc();
-//  
-//				 translate_image();
+//				translate_image();
+//				LeftIsland.anotherslope[0]=R_Slope_Figure(6);
+//				RightIsland.anotherslope[0]=L_Slope_Figure(6);
+//				UartX_printf(uart1,"左边界斜率=%f  右边界斜率=%f  \r\n",fabs(RightIsland.anotherslope[0]),LeftIsland.anotherslope[0]);	
 				
 				mt9v032_finish_flag = 0;
 			}			

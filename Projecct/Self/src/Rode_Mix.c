@@ -4,27 +4,42 @@
 #include "Typedef.h"
 #include "common_type.h"
 #include "Island.h"
-bool IslandInflag=FALSE ;
 extern uint16_t speedcontrol;
+extern uint8_t OutsideCount;
 
-uint8_t get_rode_type(){
-	if(IslandInflag==FALSE)
+extern _Island_ LeftIsland;
+extern _Island_ RightIsland;
+
+uint8_t get_rode_type()
+{
+	if((!LeftIsland.f_IslandIn||!RightIsland.f_IslandIn)&&IslandStep<=2)//正常路径下
 	{
-		return IsOutOfRoad()?Outside:IsStartLine(pre_sight)?Startline:Island_judge()?Island_in:IsCrossRoad()?CrossRoad:IsStraightLine()?Straight:WhichCurve() ;	 
+		return IsOutOfRoad()?Outside:IsStartLine(pre_sight)?Startline:IslandfristEntrancejudge()?Island_in:IsCrossRoad()?CrossRoad:IsStraightLine()?Straight:WhichCurve() ;	 
 	}
-	else if(Islandleaveflag==TRUE)
+	else if((LeftIsland.f_IslandIn||RightIsland.f_IslandIn)&&IslandStep==3)//识别到环岛入口，准备识别第二个入口
 	{
-		return IslandOut_judge()?Island_out:FALSE;
-	}
-	else if(IslandInflag==TRUE&&Islandleaveflag==FALSE)
+//		OLEDPrintf(0,7, "10") ;
+		return IslandsecondEntrancejudge()?Island_SecondEntrance:FALSE;
+		
+	}	
+	else if((LeftIsland.f_IslandIn||RightIsland.f_IslandIn)&&IslandStep==4)//进入环岛后，准备识别出口
 	{
-		return IslandSecondEntrance_judge()?Island_SecondEntrance:IslandOut_judge()?Island_out:FALSE;
+//		OLEDPrintf(50,7, "50") ;
+		return IslandExitjudge()?Island_out:FALSE;
 	}
-	
+	else if((LeftIsland.f_IslandIn||RightIsland.f_IslandIn)&&IslandStep==5)//离开出口，准备再次识别第二个入口
+	{
+//		OLEDPrintf(100,7, "100") ;
+		return IslandsecondEntrancejudge()?Island_SecondEntrance:FALSE;
+	}
+	else
+	{
+		return FALSE;	
+	}
 }
 void Summarycontrol(){
 	
-   switch(get_rode_type()){
+    switch(get_rode_type()){
 		 
 		 case Outside :  
 									OLEDPrintf(1,6, "Outside") ;
@@ -39,56 +54,36 @@ void Summarycontrol(){
 								  resultSet.imgProcFlag |= CROSS_ROAD;
 								  CrossRoadAction() ; 
 		 break;
-		 case  Island_in: 
-//									speedcontrol=60;
-//								  BUZZLE_ON;
-									OLEDPrintf(1,6, "Island_in") ;
-									IslandInflag=TRUE ;
-									IslandDistanceCountFlag=TRUE;
-									island_entrance=FALSE;				
+		 case  Island_in:  
+										speedcontrol=60;
 		 break;	
      case  Island_SecondEntrance:
-									IslandSecondEntranceProc();
+							    IslandsecondEntranceProc();		
 	   break;
 		 case  Island_out:
-									 if(IslandInflag&&!IslandleaveDistanceCountFlag)
-									 {
-										 IslandOutProc();
-									 }
-									 else  if(IslandInflag&&IslandleaveDistanceCountFlag)
-									 {
-										 ;
-									 }
+					        IslandExitProc();				 
 									
 	   break;
 			 
 		 case Straight:
-									BUZZLE_OFF;	
-									speedcontrol=75;		 
-									OLEDPrintf(1,6, "Straight") ;
+									BUZZLE_OFF;
+                  OutsideCount=0;//防止意外停车		 
+//									OLEDPrintf(1,6, "Straight") ;
 									resultSet.imgProcFlag |= STRAIGHT_ROAD; 
 		 break;  
 		 case LeftCurve:
-									if(IslandInflag) 
-									{
-										motor_on=TRUE;
-									}			
-									OLEDPrintf(1,6, "LeftCurve") ;  
+//									OLEDPrintf(1,6, "LeftCurve") ;  
 									resultSet.imgProcFlag |= LEFTCUVER;
 //							    LeftCurveAction();  
 		 break;								 
-		 case RightCurve:
-									if(IslandInflag) 
-									{
-										motor_on=TRUE;
-									}				 
-									OLEDPrintf(1,6, "RightCurve") ;
+		 case RightCurve:		 
+//									OLEDPrintf(1,6, "RightCurve") ;
 								  resultSet.imgProcFlag |= RIGHTCUVER; 
 //							    RightCurveAction();  
 		 break;
           
 									
-		 default:BUZZLE_OFF;break;		 	 
+		 default: break;		 	 
   }
 	 
 }

@@ -1,420 +1,674 @@
+/*********************目前进环岛的策略   20180305************************************************
+STEP ONE:首先用四个条件（或者说）五个条件：拐点，边界，拐点上方黑块，远处白色，识别第一个入口
+STEP TWO:在识别到第一个入口的条件下，通过计距离和补线的方式，识别第二个入口
+STEP THREE:进入环岛后，识别出口，识别到出口后补线，并记一段距离。
+STEP FOUR:从环岛出口出来以后，再次识别后，右边补线。
+*/
 #include "Island.h"
 #include "rodeview.h"
-uint8 Roundaboutstep=0;
-uint8 Roundabout=0;
-uint8 jumping=0; //环岛进程需用
-bool island_entrance;
-int32_t IslandDistance;
-int32_t IslandOutDistance;
-int32_t IslandleaveDistance;
-extern bool IslandInflag;
-extern uint16_t speedcontrol;
+#include "math.h"
+#include "Flash_Date.h"
 
-bool Islandleaveflag=FALSE;
+#define OLED_Printf_Dubug  1   //OLED调试信息输出
 
-uint8_t leftjumpout=0;
-uint8_t leftmidblackcol=0;
-uint8_t leftmidblackrow=0;
-uint8_t leftmidtemp=0;
-bool leftjumpoutflag=FALSE;
-bool leftmidblackflag=FALSE;
-bool leftIslandOutflag=FALSE;
-bool IslandOutDistanceCountFlag=FALSE ;
-bool IslandleaveDistanceCountFlag=FALSE ;
+#define IslandfristentranceDistanceMIN  1000
+#define IslandfristentranceDistanceMAX  5500
 
+#define IslandsecondentranceDistanceThreshold  6000
+#define IslandexitDistanceThreshold   7000
+#define IslandsecondentranceleaveDistanceThreshold  6000
+
+bool f_L_Island;
+bool f_R_Island;
+uint8_t IslandStep=0;
+
+uint16 IslandfristEntranceDistance;
+uint16 IslandsecondEntranceDistance;
+uint16 IslandexitDistance;
+uint16 IslandsecondEntranceleaveDistance;
+
+bool f_IslandfristEntranceDistance;
+bool f_IslandsecondEntranceDistance;
+bool f_IslandexitDistance;
+bool f_IslandsecondEntranceleaveDistance;
+bool f_IslandfristEntranceDistanceFinsh;
 
 uint8_t SecondEntranceInflexionRow=0;
-uint8_t SecondEntranceInflexionCol=0;
-bool    SecondEntranceInflexionFlag=FALSE;
-bool IslandDistanceCountFlag=FALSE ;
+uint8_t	SecondEntranceInflexionCol=0;
+bool		f_SecondEntranceInflexion ;
 
-void IsRoundabout()
+_Island_ LeftIsland;
+_Island_ RightIsland;
+
+//****************************************************************************
+//  函数名：Slope_Figure(uint8_t n)
+//  功能：赛道斜率计算
+//  说明：无
+//****************************************************************************/ 
+float L_Slope_Figure(uint8_t k)
 {
-	uint8 anothersmooth=0;
-	uint8 anotherstraight=0;	
-	float anotherxielv1=0;
-	float anotherxielv2=0;
-	float anotherxielv3=0;	
-	uint8 midblack=0;
-	uint8 middleblack[8]={0};
-	float midblacksum=0;
-	uint8 mblacknumber=0;	
-	uint8 farwhite=0;
-	uint8 farwhitesum=0;
-	uint8 farwhitemid=0;	
-	uint8 IsRoundstep=0;		
-  jumping=0;
-	for(uint8 r=20;r>4;r--)
+	int slope_x=0;
+	int slope_a=0;
+	int slope_b=0;
+	float slope=0;
+	//计算左边界斜率   最小二乘法拟合直线
+	if(k>=4)
+	{	
+		slope_x=resultSet.leftBorder[k-4]+resultSet.leftBorder[k-3]+resultSet.leftBorder[k-2]+resultSet.leftBorder[k-1]+resultSet.leftBorder[k];
+		slope_a=(k-4)*(resultSet.leftBorder[k-4])+(k-3)*(resultSet.leftBorder[k-3])+(k-2)*(resultSet.leftBorder[k-2])+(k-1)*(resultSet.leftBorder[k-1])+(k)*(resultSet.leftBorder[k]);
+		slope_b=(k-2)*slope_x;
+		slope=(slope_a-slope_b)/10.0;	
+		return slope;	
+	}
+	else
 	{
-		if(resultSet.rightBorder[r-2]-resultSet.rightBorder[r] >20)
+		slope=0;	
+		return slope;	
+	}
+}
+
+float R_Slope_Figure(uint8_t k)
+{
+	int slope_x=0;
+	int slope_a=0;
+	int slope_b=0;
+	float slope=0;
+	//计算左边界斜率
+	if(k>=4)
+	{	
+		slope_x=resultSet.rightBorder[k-4]+resultSet.rightBorder[k-3]+resultSet.rightBorder[k-2]+resultSet.rightBorder[k-1]+resultSet.rightBorder[k];
+		slope_a=(k-4)*(resultSet.rightBorder[k-4])+(k-3)*(resultSet.rightBorder[k-3])+(k-2)*(resultSet.rightBorder[k-2])+(k-1)*(resultSet.rightBorder[k-1])+(k)*(resultSet.rightBorder[k]);
+		slope_b=(k-2)*slope_x;
+	    slope=(slope_a-slope_b)/10.0;
+		return 	slope;	
+	}
+	else
+	{
+		slope=0;	
+		return slope;	
+	}
+}
+
+/*****************************************************/
+void IslandfristEntranceRec()
+{
+	for(uint8 row=20;row>4;row--)//条件1：找到左（右）拐点
+	{
+		 if(resultSet.leftBorder[row-1]-resultSet.leftBorder[row] <0
+			&&resultSet.leftBorder[row-2]-resultSet.leftBorder[row] <0
+			&&resultSet.leftBorder[row-3]-resultSet.leftBorder[row] <0
+			&&resultSet.leftBorder[row-4]-resultSet.leftBorder[row] <0
+		  &&resultSet.leftBorder[row-5]-resultSet.leftBorder[row] <0
+		  &&resultSet.leftBorder[row-1]!=0
+		  &&resultSet.leftBorder[row-2]!=0
+		  &&resultSet.leftBorder[row-3]!=0
+		  &&resultSet.leftBorder[row-4]!=0
+		  &&resultSet.leftBorder[row-5]!=0)//左拐点
 		{
-			IsRoundstep=1;
-			jumping=r;
-//			OLEDPrintf(1, 2, "%d",jumping);
-//		OLEDPrintf(1, 3, "%d  %d",resultSet.rightBorder[r-2],resultSet.rightBorder[r]) ;
+			LeftIsland.inflexion=row;
+			LeftIsland.f_inflexion=TRUE;
+			#if  OLED_Printf_Dubug
+			OLEDPrintf(1,1, "	Linflexion  OK") ;
+			#endif
+			break;
+		}
+		else if(resultSet.rightBorder[row-1]-resultSet.rightBorder[row] >0
+			    &&resultSet.rightBorder[row-2]-resultSet.rightBorder[row] >0
+			    &&resultSet.rightBorder[row-3]-resultSet.rightBorder[row] >0
+		      &&resultSet.rightBorder[row-4]-resultSet.rightBorder[row] >0
+		      &&resultSet.rightBorder[row-5]-resultSet.rightBorder[row] >0
+					&&resultSet.rightBorder[row-1]!=188
+					&&resultSet.rightBorder[row-2]!=188
+		      &&resultSet.rightBorder[row-3]!=188
+					&&resultSet.rightBorder[row-4]!=188
+					&&resultSet.rightBorder[row-5]!=188)//右拐点
+		{
+			RightIsland.inflexion=row;
+			RightIsland.f_inflexion=TRUE;
+			#if OLED_Printf_Dubug
+			OLEDPrintf(1,1, "Rinflexion  OK") ;
+			#endif
 			break;
 		}
   }
-//   OLEDPrintf(1, 5, "%d  %d %d",resultSet.leftBorder[12],(resultSet.leftBorder[12]+resultSet.rightBorder[12])/2,resultSet.rightBorder[12]) ;
 	
-	//条件2：另一边无跳变
-	if(jumping!=0)
+	if(LeftIsland.f_inflexion||RightIsland.f_inflexion)//条件2：另一边没有跳变点，初步判断是直道
 	{
-		anothersmooth=1;
-		IsRoundstep=2;
-		for(uint8 r=39;r>4;r--)
+		if(LeftIsland.f_inflexion)
 		{
-			if((resultSet.leftBorder[r]-resultSet.leftBorder[r-2] >10))//||(resultSet.leftBorder[r-2]-resultSet.leftBorder[r]<-5))
-			{
-				IsRoundstep=1;
-				anothersmooth=0;
-				break;
-			}
-		}
-	}
-
-	//	//条件3：另一边直道
-	if(anothersmooth==1)
-	{
-		anotherstraight=1;
-		IsRoundstep=3;
-    anotherxielv1=(float)(resultSet.leftBorder[7]+resultSet.leftBorder[8]+resultSet.leftBorder[9]-resultSet.leftBorder[15]-resultSet.leftBorder[16]-resultSet.leftBorder[17])/24;
-    anotherxielv2=(float)(resultSet.leftBorder[14]+resultSet.leftBorder[15]+resultSet.leftBorder[16]-resultSet.leftBorder[24]-resultSet.leftBorder[25]-resultSet.leftBorder[26])/30;
-    anotherxielv3=(float)(resultSet.leftBorder[25]+resultSet.leftBorder[26]+resultSet.leftBorder[27]-resultSet.leftBorder[35]-resultSet.leftBorder[36]-resultSet.leftBorder[37])/30;
-//		OLEDPrintf(1, 3, "%f",anotherxielv1);
-//		OLEDPrintf(1, 4, "%f",anotherxielv2);
-//		OLEDPrintf(1, 5, "%f",anotherxielv3);
-		if(abs(anotherxielv1-anotherxielv2)>0.3||abs(anotherxielv1-anotherxielv3)>0.3||abs(anotherxielv2-anotherxielv3)>0.3)
-			{
-				IsRoundstep=2;
-				anotherstraight=0;
-			}
-	}
-		//条件4：环岛中间黑块
-	if(anotherstraight==1)
-	{
-		midblack=1;
-		for(uint8 c=resultSet.rightBorder[jumping];c<resultSet.rightBorder[jumping]+8;c++)
-			for(uint8 r=jumping-3;r>2;r--)
-			{
-				if(image_binary[r][c]==0x00){middleblack[c-resultSet.rightBorder[jumping]]=r;break;}
-			}
-//						OLEDPrintf(1, 3, "%d %d %d %d",middleblack[0],middleblack[1],middleblack[2],middleblack[3]);
-//						OLEDPrintf(1, 4, "%d %d %d %d",middleblack[4],middleblack[5],middleblack[6],middleblack[7]);
-			for(uint8 i=0;i<8;i++)
-			{
-				if(middleblack[i]>0)
+			  LeftIsland.f_anotherstraight=TRUE;
+				for(uint8 row=20;row>2;row--)
 				{
-					if(abs(middleblack[i]-middleblack[3])>2){midblack=0; break;}
-				  midblacksum+=middleblack[i];
+					if(resultSet.rightBorder[row-1]-resultSet.rightBorder[row] >0&&resultSet.rightBorder[row-2]-resultSet.rightBorder[row] >0)
+					{
+						LeftIsland.f_anotherstraight=FALSE;
+						#if OLED_Printf_Dubug
+						OLEDPrintf(1,2, "L_straight  Error") ;
+						#endif
+						break;
+					}
 				}
-				else {mblacknumber++;}	
-			}
-			if(mblacknumber<3)
-			{
-				midblacksum=midblacksum/(8-mblacknumber);
-			if(midblacksum>5||midblacksum<3){midblack=0;}
-		  }
-			else midblack=0;
-//				OLEDPrintf(1, 3, "%f",midblacksum);
-			if(midblack==1)IsRoundstep=4;
-	}
-	//条件四补充
-		if(anotherstraight==1&&midblack==0)//
-	{
-		midblack=1;
-		midblacksum=0;
-		mblacknumber=0;
-		for(uint8 c=resultSet.rightBorder[jumping]-7;c<resultSet.rightBorder[jumping]+1;c++)
-			for(uint8 r=jumping-3;r>2;r--)
-			{
-				if(image_binary[r][c]==0x00){middleblack[7+c-resultSet.rightBorder[jumping]]=r;break;}
-			}
-//						OLEDPrintf(1, 3, "%d %d %d %d",middleblack[0],middleblack[1],middleblack[2],middleblack[3]);
-//						OLEDPrintf(1, 4, "%d %d %d %d",middleblack[4],middleblack[5],middleblack[6],middleblack[7]);
-			for(uint8 i=0;i<8;i++)
-			{
-				if(middleblack[i]>0)
-				{
-					if(abs(middleblack[i]-middleblack[3])>2){midblack=0; break;}
-				  midblacksum+=middleblack[i];
-				}
-				else {mblacknumber++;}	
-			}
-			if(midblack==1&&mblacknumber<3)
-			{	
-				midblacksum=midblacksum/(8-mblacknumber);
-			if(midblacksum>7||midblacksum<3){midblack=0;}
-		  }
-			else midblack=0;
-//				OLEDPrintf(1, 3, "%f",midblacksum);
-			if(midblack==1)IsRoundstep=4;
-	}
-	//条件5：远处白色
-	if(midblack==1)
-	{
-		//farwhitemid=(resultSet.leftBorder[jumping+3]+resultSet.rightBorder[jumping+3])/2;
-
-		farwhitemid=anotherxielv1*8+resultSet.leftBorder[10]+17;
-//    OLEDPrintf(1, 5, "%d  %d %d",resultSet.leftBorder[2],resultSet.rightBorder[2],farwhitemid) ;
-		if(abs(farwhitemid-COL/2)<30)
-		{
-		for(uint8 r=1;r<10;r++)
-			for(uint8 c=farwhitemid-5;c>farwhitemid-6&&c<farwhitemid+6;c++)
-		  {
-				farwhitesum+=(image_binary[r][c]==0x00?1:0);
-			}
-			if(farwhitesum<5)farwhite=1;
-				//OLEDPrintf(1, 5, "%d",farwhitesum) ;
 		}
-			if(farwhite==1){
-			    IsRoundstep=5;
-				  Roundabout=1;
-				  Roundaboutstep=1;
-				  island_entrance=TRUE;
-				
-			}//OLEDPrintf(1,6, "%s","Roundabout") ;
-	}
-	image_binary[2][farwhitemid]=0x00;
-	image_binary[3][farwhitemid]=0x00;
-	image_binary[4][farwhitemid]=0x00;	
-	image_binary[5][farwhitemid]=0x00;
-//	OLEDPrintf(1,6, "%d  %d",farwhitesum,IsRoundstep) ;
-}
-
-bool Island_judge(){
-    IsRoundabout();
-	  if(island_entrance)
+		else if(RightIsland.f_inflexion)
 		{
-		  return TRUE;
-  	}
-    else 
-		{
-			return FALSE;
-		}		
-}
-
-bool IslandSecondEntrance_judge()
-{
-	if(IslandDistance>1000&&IslandDistance<4000)
-	{
-		IslandActionGomiddle();
-	}
-	
- if(IslandDistance>4000)
-	{
-		IslandDistance=0;
-		IslandDistanceCountFlag=FALSE;
+				RightIsland.f_anotherstraight=TRUE;
+				for(uint8 row=20;row>2;row--)
+				{
+					if(resultSet.leftBorder[row-1]-resultSet.leftBorder[row] <0&&resultSet.leftBorder[row-2]-resultSet.leftBorder[row] <0)
+					{
+						RightIsland.f_anotherstraight=FALSE;
+						#if OLED_Printf_Dubug
+						OLEDPrintf(1,2, "R_straight  Error") ;
+						#endif
+						break;
+					}
+				}
+		}
 		
 	}
 	
-	 if(IslandInflag&&IslandDistance==0)
-	{	
-			IslandSecondEntrancejudge();
-			if(SecondEntranceInflexionFlag)
-			{
-				return TRUE;
-			}
-			else 
-			{
-				return FALSE ;
-			}
-		}
-		else 
-		{
-			return FALSE ;
-		}		
-	
-}
-
-bool IslandOut_judge()
-{
-	if(IslandInflag&&!IslandleaveDistanceCountFlag)
-	{		
-			IslandOutjudge();
-		    
-			if(leftIslandOutflag)
-			{
-				 IslandOutDistanceCountFlag=TRUE ;
-				 leftIslandOutflag=FALSE;
-				if(IslandOutDistance>4000)//检测到出口记一段距离，这段距离内补出口线
-				{
-					 IslandOutDistance=0;
-					 IslandleaveDistanceCountFlag=TRUE;
-					 IslandOutDistanceCountFlag=FALSE ;
-					 Islandleaveflag=TRUE;
-					 BUZZLE_OFF; 
-				}
-
-				 return TRUE;
-			}
-			else
-			{
-				 return FALSE;
-			}
-	 
-	}
-	else if(IslandInflag&&IslandleaveDistanceCountFlag)
+	if(LeftIsland.f_anotherstraight||RightIsland.f_anotherstraight)//条件3：计算另一边的斜率，确认是直道
 	{
-		if(IslandSecondEntrance_judge())
+		if(LeftIsland.f_anotherstraight)
 		{
-			IslandSecondEntranceOutProc();
-			if(IslandleaveDistance>4000)//再次检测到第二个入口，记一段距离，补右边界
+			LeftIsland.f_anotherstraight=TRUE;
+			f_L_Island=TRUE;
+      LeftIsland.anotherslope[0]=R_Slope_Figure(10);
+//			R_Slope_Figure(5,&LeftIsland.anotherslope[0]);
+//			R_Slope_Figure(6,&LeftIsland.anotherslope[0]);
+		  if(fabs(LeftIsland.anotherslope[0])<1||fabs(LeftIsland.anotherslope[0])>3)
 			{
-				IslandleaveDistanceCountFlag=FALSE ;
-				IslandleaveDistance=0;
-				IslandInflag=FALSE;
-				Islandleaveflag=FALSE;
-			}	
-			return TRUE;
-		}	
-    else
-	 {
-	    return FALSE;
-   }		
-	}
-	else 
-	{
-			return FALSE;
-	}		
-}
-	
-void IslandActionGoright() {
-    for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) {
-          resultSet.middleLine[i] = COL - 1;
-    }
-	  DirectionControlProc(resultSet.middleLine, COL>>1);
-}
-void IslandActionGomiddle()
-{
-	for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) {
-          resultSet.middleLine[i] = COL>>1;
-    }
-	  DirectionControlProc(resultSet.middleLine, COL>>1);
-	
-} 
-/************************************************/
-void IslandSecondEntrancejudge()
-{
-		for(uint8_t row=ROW-20;row>5;row--)
-		{
-			for(uint8_t col=60;col<COL-20;col++)
-			{
-				if(image_binary[row][col]==0x00       //中
-				 &&image_binary[row-3][col]==0x00     //上
-				 &&image_binary[row][col-10]==0xff		//左
-				 &&image_binary[row][col+10]==0xff    //右
-				 &&image_binary[row+10][col]==0xff)    //下 
-				{
-						SecondEntranceInflexionRow=row;
-						SecondEntranceInflexionCol=col;
-						SecondEntranceInflexionFlag=TRUE ;
-//						BUZZLE_ON;
-						OLEDPrintf(1,2, "%d  %d",SecondEntranceInflexionRow,SecondEntranceInflexionCol) ;
-						break ;
-				}
+				LeftIsland.f_anotherstraight=FALSE;
+				f_L_Island=FALSE;
+				#if OLED_Printf_Dubug
 				
+				OLEDPrintf(1,3, "L_Slope  Error") ;
+				#endif
+			}
+			
+		}
+		else if(RightIsland.f_anotherstraight)
+		{
+			RightIsland.f_anotherstraight=TRUE;
+			f_R_Island=TRUE;
+			RightIsland.anotherslope[0]=L_Slope_Figure(10);
+		  if(fabs(RightIsland.anotherslope[0])<1||fabs(RightIsland.anotherslope[0])>3)
+			{
+				RightIsland.f_anotherstraight=FALSE;
+				f_R_Island=FALSE;
+				#if OLED_Printf_Dubug
+				OLEDPrintf(1,3, "R_Slope Err") ;
+				#endif
 			}
 		}
+		
+	}
+	if(f_L_Island||f_R_Island)//条件4：从拐点往上搜，是黑块
+	{
+		if(f_L_Island)
+		{
+			LeftIsland.f_midblack=TRUE;
+			for(uint8 col=resultSet.leftBorder[LeftIsland.inflexion]-8;col<resultSet.leftBorder[LeftIsland.inflexion];col++)
+			{
+				for(uint8 row=LeftIsland.inflexion-3;row>0;row--)
+				{
+					if(image_binary[row][col]==0x00)
+					{
+						LeftIsland.midblackrow[col-(resultSet.leftBorder[LeftIsland.inflexion]-8)]=row;//记录下每列找到黑点的行数
+						break;
+					}
+				}
+			}
+			for(uint8 i=0;i<8;i++)
+			{
+				if(LeftIsland.midblackrow[i]>0)//排除第一行
+				{
+					if(abs(LeftIsland.midblackrow[i]-LeftIsland.midblackrow[3])>2)//黑块下边沿近似一条直线
+					{
+						LeftIsland.f_midblack=FALSE;
+						#if OLED_Printf_Dubug						
+						OLEDPrintf(1,4, "L_midblack Error") ;
+						#endif
+						break;
+					}
+				}
+			}
+		}
+		
+		else if(f_R_Island)
+		{
+			RightIsland.f_midblack=TRUE;
+			for(uint8 col=resultSet.rightBorder[RightIsland.inflexion];col<resultSet.rightBorder[RightIsland.inflexion]+8;col++)
+			{
+				for(uint8 row=RightIsland.inflexion-3;row>0;row--)
+				{
+					if(image_binary[row][col]==0x00)
+					{
+						RightIsland.midblackrow[col-(resultSet.rightBorder[RightIsland.inflexion])]=row;//记录下每列找到黑点的行数
+						break;
+					}
+				}
+			}
+			for(uint8 i=0;i<8;i++)
+			{
+				if(RightIsland.midblackrow[i]>0)//排除第一行
+				{
+					if(abs(RightIsland.midblackrow[i]-RightIsland.midblackrow[3])>2)//黑块下边沿近似一条直线
+					{
+						RightIsland.f_midblack=FALSE;
+						#if OLED_Printf_Dubug
+						OLEDPrintf(1,4, "R_midblack Error") ;	
+						#endif
+						break;
+					}
+				}
+			}
+		}	
+	}
 	
+	if(RightIsland.f_midblack||LeftIsland.f_midblack)
+	{
+		if(f_L_Island&&LeftIsland.f_midblack)
+		{
+			LeftIsland.f_farwhite=FALSE;
+			LeftIsland.farwhitestartCol=resultSet.rightBorder[10]-27;
+//			LeftIsland.farwhitestartCol=resultSet.rightBorder[10]-LeftIsland.anotherslope[0]*4-17;
+			if(abs(LeftIsland.farwhitestartCol-COL/2)<30)//在图像中线左右x列范围内
+			{
+				for(uint8 row=1;row<10;row++)     //远处X行
+				{
+					for(uint8 col=LeftIsland.farwhitestartCol-5;col<LeftIsland.farwhitestartCol+5;col++)//左右X行
+					{
+						LeftIsland.farblackpointNum+=(image_binary[row][col]==0x00?1:0);//计算这个区域范围的黑点数  黑点数超过一定数量认为不是白色
+					}
+				}
+					
+				if(LeftIsland.farblackpointNum<5)
+				{
+					LeftIsland.f_farwhite=TRUE;
+					#if OLED_Printf_Dubug
+					OLEDPrintf(1, 5, "%s","L_farwhite OK!") ;
+					#endif
+	
+				}
+			}
+		}
+		else if(f_R_Island&&RightIsland.f_midblack)
+		{
+			RightIsland.f_farwhite=FALSE;
+			RightIsland.farwhitestartCol=resultSet.leftBorder[10]+43;
+//			RightIsland.farwhitestartCol=RightIsland.anotherslope[0]*4+resultSet.leftBorder[10]+24;
+			if(abs(RightIsland.farwhitestartCol-COL/2)<30)//在图像中线左右x列范围内
+			{
+				for(uint8 row=1;row<10;row++)     //远处X行
+				{
+					for(uint8 col=RightIsland.farwhitestartCol-5;col<RightIsland.farwhitestartCol+5;col++)//左右X行
+					{
+						RightIsland.farblackpointNum+=(image_binary[row][col]==0x00?1:0);//计算这个区域范围的黑点数  黑点数超过一定数量认为不是白色
+					}
+				}
+					
+				if(RightIsland.farblackpointNum<5)
+				{
+					RightIsland.f_farwhite=TRUE;
+					#if OLED_Printf_Dubug
+					OLEDPrintf(1, 5, "%s","R_farwhite OK!") ;
+					#endif
+				}
+			}
+		}
+			
+	}
+	
+	if(LeftIsland.f_inflexion&&LeftIsland.f_anotherstraight&&LeftIsland.f_midblack&&LeftIsland.f_farwhite)
+	{
+//		IslandStep++;
+		IslandStep=2;
+		if(IslandStep>=2)
+		{
+			IslandStep=3;
+			LeftIsland.f_IslandIn=TRUE;//识别环岛标志
+			BUZZLE_ON;
+			#if OLED_Printf_Dubug
+			OLEDPrintf(1, 6, "%s","L_Island success!") ;
+			#endif
+		}
+		LeftIsland.farblackpointNum=0;
+		
+		LeftIsland.f_inflexion=FALSE;
+		LeftIsland.f_anotherstraight=FALSE;
+		LeftIsland.f_midblack=FALSE;
+		LeftIsland.f_farwhite=FALSE;
+	}
+	else if(RightIsland.inflexion&&RightIsland.f_anotherstraight&&RightIsland.f_midblack&&RightIsland.f_farwhite)
+	{
+//		IslandStep++;
+		IslandStep=2;
+		if(IslandStep>=2)
+		{
+			IslandStep=3;
+			RightIsland.f_IslandIn=TRUE;//识别环岛标志
+			BUZZLE_ON;
+			#if OLED_Printf_Dubug
+			OLEDPrintf(1, 6, "%s","R_Island success!") ;
+			#endif
+		}
+		RightIsland.farblackpointNum=0;
+		
+		RightIsland.f_inflexion=FALSE;
+		RightIsland.f_anotherstraight=FALSE;
+		RightIsland.f_midblack=FALSE;
+		RightIsland.f_farwhite=FALSE;
+	}
+	
+	LeftIsland.f_inflexion=FALSE;
+	LeftIsland.f_anotherstraight=FALSE;
+	LeftIsland.f_midblack=FALSE;
+	LeftIsland.f_farwhite=FALSE;
+	
+	RightIsland.f_inflexion=FALSE;
+	RightIsland.f_anotherstraight=FALSE;
+	RightIsland.f_midblack=FALSE;
+	RightIsland.f_farwhite=FALSE;
 }
 
-
-void IslandSecondEntranceProc()
+void IslandfristEntranceProc()
 {
-	if(SecondEntranceInflexionFlag)
+	if(LeftIsland.f_IslandIn&&f_L_Island&&IslandStep==3&&!f_IslandfristEntranceDistanceFinsh)
 	{
-		SecondEntranceInflexionFlag=FALSE;
-		for(uint8_t row=ROW>>1;row>SecondEntranceInflexionRow;row--)
+		f_IslandfristEntranceDistance=TRUE;
+		if(IslandfristEntranceDistance>IslandfristentranceDistanceMIN&&IslandfristEntranceDistance<IslandfristentranceDistanceMAX)
+		{
+			IslandActionGomiddle();
+		}
+		else if(IslandfristEntranceDistance>IslandfristentranceDistanceMAX)
+		{
+			BUZZLE_OFF;
+			IslandfristEntranceDistance=0;
+			f_IslandfristEntranceDistanceFinsh=TRUE;
+			f_IslandfristEntranceDistance=FALSE;
+		}	
+	}
+	else if(RightIsland.f_IslandIn&&f_R_Island&&IslandStep==3&&!f_IslandfristEntranceDistanceFinsh)
+	{
+		f_IslandfristEntranceDistance=TRUE;
+		if(IslandfristEntranceDistance>IslandfristentranceDistanceMIN&&IslandfristEntranceDistance<IslandfristentranceDistanceMAX)
+		{
+			IslandActionGomiddle();
+		}
+		else if(IslandfristEntranceDistance>IslandfristentranceDistanceMAX)
+		{
+			IslandfristEntranceDistance=0;
+			BUZZLE_OFF;
+			f_IslandfristEntranceDistanceFinsh=TRUE;
+			f_IslandfristEntranceDistance=FALSE;
+		}	
+	}
+}
+/*****************************************************/
+
+/*****************************************************/
+void IslandsecondEntranceRec()
+{
+	for(uint8_t row=ROW-30;row>2;row--)
+	{
+		for(uint8_t col=20;col<COL-20;col++)
+		{
+			if(image_binary[row][col]==0x00       //中
+			 &&image_binary[row-2][col]==0x00     //上
+			 &&image_binary[row][col-10]==0xff		//左
+			 &&image_binary[row][col+10]==0xff    //右
+			 &&image_binary[row+10][col]==0xff)    //下 
+			{
+					SecondEntranceInflexionRow=row;
+					SecondEntranceInflexionCol=col;
+					f_SecondEntranceInflexion=TRUE ;
+					break ;
+			}
+			
+		}
+	}
+}
+
+void IslandsecondEntranceProc()
+{
+	if((f_SecondEntranceInflexion&&f_L_Island&&IslandStep==3&&f_IslandfristEntranceDistanceFinsh)||(f_SecondEntranceInflexion&&f_R_Island&&IslandStep==5))
+	{
+		f_SecondEntranceInflexion=FALSE;
+		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
+		{
+			resultSet.rightBorder[row]=resultSet.rightBorder[ROW>>1]-((resultSet.rightBorder[ROW>>1]-SecondEntranceInflexionCol)/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
+			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
+		}
+	}
+	else if((f_SecondEntranceInflexion&&f_R_Island&&IslandStep==3&&f_IslandfristEntranceDistanceFinsh)||(f_SecondEntranceInflexion&&f_L_Island&&IslandStep==5))
+	{
+		f_SecondEntranceInflexion=FALSE;
+		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
 		{
 			resultSet.leftBorder[row]=resultSet.leftBorder[ROW>>1]+((SecondEntranceInflexionCol-resultSet.leftBorder[ROW>>1])/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
 			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
 		}
 	}
 }
+/*****************************************************/
 
-void IslandSecondEntranceOutProc()
+
+/*****************************************************/
+void IslandExitRec()
 {
-	if(SecondEntranceInflexionFlag)
+	if(f_L_Island)
 	{
-		SecondEntranceInflexionFlag=FALSE;
-		for(uint8_t row=ROW>>1;row>SecondEntranceInflexionRow;row--)
+		for(uint8_t row=ROW-25;row>4;row--)//左边界找跳变点
 		{
-			resultSet.rightBorder[row]=resultSet.rightBorder[ROW>>1]-((resultSet.rightBorder[ROW>>1]-SecondEntranceInflexionCol)/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
+			if((resultSet.rightBorder[row-1]-resultSet.rightBorder[row]>0&&resultSet.rightBorder[row-2]-resultSet.rightBorder[row]>0)
+				&&image_binary[row+2][resultSet.rightBorder[row]+5]==0x00  //跳变点右边是黑
+				&&image_binary[row-4][resultSet.rightBorder[row]]==0xff  //跳变点上边是白
+				&&image_binary[row][resultSet.rightBorder[row]-10]==0xff //跳变点左边是白
+				) 
+				{
+					LeftIsland.exitinflexion=row;
+					LeftIsland.f_exitinflexion=TRUE;
+					#if OLED_Printf_Dubug					
+					OLEDPrintf(70, 7, "%d",LeftIsland.exitinflexion) ;
+					#endif
+					break ;				
+				}		
+		}
+	
+		if(LeftIsland.f_exitinflexion)
+		{
+			LeftIsland.f_exitinflexion=FALSE;
+			LeftIsland.exitMidTemp=resultSet.middleLine[LeftIsland.exitinflexion+5]-70;
+			if(LeftIsland.exitMidTemp>COL){LeftIsland.exitMidTemp=COL;}
+			for(uint8_t row=LeftIsland.exitinflexion+5;row>1;row--)//跳变点往下X行，该行中心点往右X行开始往上搜
+			{
+				if(image_binary[row][LeftIsland.exitMidTemp]==0x00   
+				 &&image_binary[row-1][LeftIsland.exitMidTemp+3]==0x00
+				 &&image_binary[row-1][LeftIsland.exitMidTemp-3]==0x00)
+				{
+					LeftIsland.exitMidblackcol=LeftIsland.exitMidTemp;
+					LeftIsland.exitMidblackrow=row;
+					LeftIsland.f_Exit=TRUE;
+					BUZZLE_ON;
+					#if OLED_Printf_Dubug
+					OLEDPrintf(70, 7, "%s","80") ;
+					#endif				
+					break;
+				}
+			}
+		}
+	}
+	else if(f_R_Island)
+	{
+		for(uint8_t row=ROW-25;row>4;row--)//左边界找跳变点
+		{
+			if((resultSet.leftBorder[row-1]-resultSet.leftBorder[row]<0&&resultSet.leftBorder[row-2]-resultSet.leftBorder[row]<0)
+				&&image_binary[row][resultSet.leftBorder[row]+5]==0xff  //跳变点右边是白
+				&&image_binary[row-4][resultSet.leftBorder[row]]==0xff  //跳变点上边是白
+				&&image_binary[row+2][resultSet.leftBorder[row]-10]==0x00 //跳变点左边是黑
+				) 
+				{
+					RightIsland.exitinflexion=row;
+					RightIsland.f_exitinflexion=TRUE;
+					#if OLED_Printf_Dubug
+          OLEDPrintf(70, 7, "%d","RightIsland.exitinflexion") ;	
+					#endif					
+					break ;				
+				}		
+		}
+	
+		if(RightIsland.f_exitinflexion)
+		{
+			RightIsland.f_exitinflexion=FALSE;
+			RightIsland.exitMidTemp=resultSet.middleLine[RightIsland.exitinflexion+5]+70;
+			if(RightIsland.exitMidTemp>COL){RightIsland.exitMidTemp=COL;}
+			for(uint8_t row=RightIsland.exitinflexion+5;row>3;row--)//跳变点往下X行，该行中心点往右X行开始往上搜
+			{
+				if(image_binary[row][RightIsland.exitMidTemp]==0x00   
+				 &&image_binary[row-1][RightIsland.exitMidTemp+3]==0x00
+				 &&image_binary[row-1][RightIsland.exitMidTemp-3]==0x00)
+				{
+					RightIsland.exitMidblackcol=RightIsland.exitMidTemp;
+					RightIsland.exitMidblackrow=row;
+					RightIsland.f_Exit=TRUE;
+					BUZZLE_ON;
+					#if OLED_Printf_Dubug
+					 OLEDPrintf(70, 7, "%s","80") ;	
+					#endif
+					break;
+				}
+			}
+		}
+	}
+	
+}
+
+void IslandExitProc()
+{
+	if(LeftIsland.f_Exit&&f_L_Island&&IslandStep==4)
+	{
+			LeftIsland.f_Exit=FALSE;
+		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
+		{
+			resultSet.rightBorder[row]=resultSet.rightBorder[LeftIsland.exitinflexion]-((resultSet.rightBorder[LeftIsland.exitinflexion]-LeftIsland.exitMidblackcol)/(LeftIsland.exitinflexion-LeftIsland.exitMidblackrow))*(LeftIsland.exitinflexion-row);
 			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
 		}
+	
+	}
+	else if(RightIsland.f_Exit&&f_R_Island&&IslandStep==4)
+	{
+		RightIsland.f_Exit=FALSE;
+		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
+		{
+			resultSet.leftBorder[row]=resultSet.leftBorder[RightIsland.exitinflexion]+((RightIsland.exitMidblackcol-resultSet.leftBorder[RightIsland.exitinflexion])/(RightIsland.exitinflexion-RightIsland.exitMidblackrow))*(RightIsland.exitinflexion-row);
+			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
+			#if OLED_Printf_Dubug
+			OLEDPrintf(100, 2, "%s","60") ;		
+			#endif
+		}
+		
+	}
+}
+/*****************************************************/
+/*****************************************************/
+bool IslandfristEntrancejudge()
+{
+	IslandfristEntranceRec();
+	if((LeftIsland.f_IslandIn&&f_L_Island)||(RightIsland.f_IslandIn&&f_R_Island))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
 	}
 }
 
-/****************************************/
-/****************************************/
-void IslandOutjudge()
+bool IslandsecondEntrancejudge()
 {
-	OLED_Fill(0x00);  //初始清屏
-	//条件一
-	for(uint8_t r=ROW-25;r>1;r--)//左边界找跳变点
+	IslandfristEntranceProc();
+	if(f_IslandfristEntranceDistanceFinsh||IslandStep==5)
 	{
-//		if((resultSet.leftBorder[r]-resultSet.leftBorder[r-2]>20||resultSet.leftBorder[r]-resultSet.leftBorder[r-3]>20)
-		if((resultSet.leftBorder[r-1]-resultSet.leftBorder[r]<0&&resultSet.leftBorder[r-2]-resultSet.leftBorder[r]<0)
-			&&image_binary[r][resultSet.leftBorder[r]+5]==0xff  //跳变点右边是白
-		  &&image_binary[r-4][resultSet.leftBorder[r]]==0xff  //跳变点上边是白
-		  &&image_binary[r+2][resultSet.leftBorder[r]-10]==0x00 //跳变点左边是黑
-		  ) 
-		  {
-				leftjumpout=r;
-		    leftjumpoutflag=TRUE;	
-				OLEDPrintf(1,1, "%d  %d",resultSet.leftBorder[r]-resultSet.leftBorder[r-2],leftjumpout) ;
-				break ;				
-		  }
-			else 
-			{
-				OLEDPrintf(1,2, "%s","error STEP1") ;
-			}
+		IslandsecondEntranceRec();
+		if(IslandsecondEntranceDistance>IslandsecondentranceDistanceThreshold&&IslandStep==3)
+		{
+			BUZZLE_OFF;
+			IslandsecondEntranceDistance=0;
+			f_IslandfristEntranceDistanceFinsh=FALSE;
+			f_IslandsecondEntranceDistance=FALSE;
+			IslandStep=4; 
 			
+		}
+		else if(IslandsecondEntranceleaveDistance>IslandsecondentranceleaveDistanceThreshold&&IslandStep==5)
+		{
+			BUZZLE_OFF;
+			IslandsecondEntranceleaveDistance=0;
+			f_IslandsecondEntranceleaveDistance=FALSE;
+			IslandStep=0;
+			
+			f_R_Island=FALSE;
+			f_L_Island=FALSE;
+			RightIsland.f_IslandIn=FALSE;
+			LeftIsland.f_IslandIn=FALSE;
+		}
+	}
+	if(f_SecondEntranceInflexion)
+	{
+		if(IslandStep==3)f_IslandsecondEntranceDistance=TRUE;       //第一次检测到开始计距离  
+		else if(IslandStep==5)f_IslandsecondEntranceleaveDistance=TRUE;
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+bool IslandExitjudge()
+{
+	IslandExitRec();
+	if(IslandexitDistance>IslandexitDistanceThreshold)
+	{
+		BUZZLE_OFF;
+		IslandexitDistance=0;
+		f_IslandexitDistance=FALSE;
+		IslandStep=5;
+	}
+	if(LeftIsland.f_Exit||RightIsland.f_Exit)
+	{
+		f_IslandexitDistance=TRUE;
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
 	}
 	
-	if(leftjumpoutflag)
+}
+/*****************************************************/
+
+void IslandActionGomiddle()
+{
+	if(f_L_Island)
 	{
-		leftmidtemp=resultSet.middleLine[leftjumpout+5]+40;
-		for(uint8_t r=leftjumpout+5;r>1;r--)//跳变点往下X行，该行中心点往右X行开始往上搜
+		for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) 
 		{
-			if(image_binary[r][leftmidtemp]==0x00   
-			 &&image_binary[r-1][leftmidtemp+3]==0x00
-			 &&image_binary[r-1][leftmidtemp-3]==0x00)
-			{
-				leftmidblackcol=leftmidtemp;
-//				leftmidblackcol=COL;
-				leftmidblackrow=r;
-				leftmidblackflag=TRUE;
-				leftIslandOutflag=TRUE;
-				OLEDPrintf(1,3, "%s","Islandout ok!") ;
-				BUZZLE_ON;
-				break;
-			}
+						resultSet.rightBorder[i]-= i*1.5;
+			      resultSet.middleLine[i]=(resultSet.leftBorder[i]+resultSet.rightBorder[i])>>1;
+		}
+	}
+	else if(f_R_Island)
+	{
+		for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) 
+		{
+						resultSet.leftBorder[i]+= i*1.5;
+			      resultSet.middleLine[i]=(resultSet.leftBorder[i]+resultSet.rightBorder[i])>>1;
 		}
 	}
 	
-}
-/****************************************/
-
-/****************************************/
-void IslandOutProc()
-{
-	if(leftjumpoutflag&&leftmidblackflag)
-	{
-		for(uint8_t r=leftjumpout;r>leftmidblackrow;r--)
-		{
-			
-			
-			resultSet.leftBorder[r]=resultSet.leftBorder[leftjumpout]+((leftmidblackcol-resultSet.leftBorder[leftjumpout])/(leftjumpout-leftmidblackrow))*(leftjumpout-r);
-
-//			resultSet.leftBorder[r]=resultSet.leftBorder[leftjumpout]+10*(leftjumpout-r);
-//			OLEDPrintf(1,4, "%d",resultSet.leftBorder[r]) ;
-			resultSet.middleLine[r]=(resultSet.leftBorder[r]+resultSet.rightBorder[r])/2;
-		}
-		leftjumpoutflag=FALSE;
-		leftmidblackflag=FALSE;
-	}
+//	  DirectionControlProc(resultSet.middleLine, COL>>1);
 	
-}
+} 
+
 

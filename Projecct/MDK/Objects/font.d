@@ -1,0 +1,10 @@
+.\objects\font.o: ..\..\Libraries\seekfree\font.c
+.\objects\font.o: ..\..\Libraries\seekfree\font.h
+.\objects\font.o: ..\..\Libraries\drives\inc\common.h
+.\objects\font.o: ..\..\Libraries\startup\DeviceSupport\MK60D10.h
+.\objects\font.o: ..\..\Libraries\startup\CoreSupport\core_cm4.h
+.\objects\font.o: D:\KEIL5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\font.o: ..\..\Libraries\startup\CoreSupport\core_cmInstr.h
+.\objects\font.o: ..\..\Libraries\startup\CoreSupport\core_cmFunc.h
+.\objects\font.o: ..\..\Libraries\startup\CoreSupport\core_cm4_simd.h
+.\objects\font.o: ..\..\Libraries\startup\DeviceSupport\system_MK60.h

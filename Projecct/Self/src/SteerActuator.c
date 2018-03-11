@@ -3,7 +3,7 @@
 
 bool steer_actuator_on;
 int16_t steer_actuator_left;
-int16_t steer_actuator_middle=790;
+int16_t steer_actuator_middle=730;
 int16_t steer_actuator_right;
 
 void SteerActuatorInit() {

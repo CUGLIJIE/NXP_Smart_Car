@@ -26,10 +26,9 @@ void ImgProc()
     }
 
 		int16_t middle = COL / 2;
-		Summarycontrol();
-		 
-        DirectionControlProc(resultSet.middleLine, middle);
-        SpeedTargetSet(resultSet.imgProcFlag);
+		Summarycontrol(); 
+		DirectionControlProc(resultSet.middleLine, middle);
+		SpeedTargetSet(resultSet.imgProcFlag);
 }
 
 

@@ -54,5 +54,5 @@ int16_t DirectionControlPID(int16_t error) {
     
     lastError = error;
 //    motor_change(4000-10*abs(error)-60*directionAngle,4000-10*abs(error)+60*directionAngle);
-    return directionAngle * 5.556 + 790;
+    return directionAngle * 5.556 + 730;
 }

@@ -1,11 +1,11 @@
 #include "common_type.h"
 #include "Imageprocess.h"
 int16_t startLineWidth=100;
-
+uint8_t OutsideCount;
 /**********************³ö½çÍ£³µ*******************/
  bool IsOutOfRoad() {
     uint16 cnt = 0;
-     static  uint8_t yt;
+     
 	  for(uint8 row = 55; row >53; --row )
 	  {
         for(uint8 col = 50; col < 140; ++col) 
@@ -16,13 +16,13 @@ int16_t startLineWidth=100;
 						}
         }
 		}
-        if(cnt >150){
-					++yt;
+        if(cnt >170){
+					++OutsideCount;
 				
 				}	
-				if(yt>=6)
+				if(OutsideCount>=7)
 				{
-					yt=0;
+					OutsideCount=0;
 					return TRUE;
 				}
         else 

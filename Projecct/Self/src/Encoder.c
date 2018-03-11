@@ -43,24 +43,27 @@ void MainProc() {
      distancecontrol();
 
     SpeedControlProc(leftSpeed, rightSpeed);
-    
 }
 
 
 //±‡¬Î∆˜º«æ‡¿Î 
 void distancecontrol(){
      int16_t dist = (leftSpeed + rightSpeed) / 2;
-	  if(IslandDistanceCountFlag)
+	  if(f_IslandfristEntranceDistance)
 		{
-		     IslandDistance += dist;
+		     IslandfristEntranceDistance += dist;
 		}
-		else if(IslandOutDistanceCountFlag)
+		else if(f_IslandsecondEntranceDistance)
 		{
-			   IslandOutDistance += dist;
+			   IslandsecondEntranceDistance += dist;
 		}
-		else if(IslandleaveDistanceCountFlag)
+		else if(f_IslandexitDistance)
 		{
-			   IslandleaveDistance += dist;
+			   IslandexitDistance += dist;
+		}
+		else if(f_IslandsecondEntranceleaveDistance)
+		{
+			   IslandsecondEntranceleaveDistance += dist;
 		}
 		
 }
