@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\SeekFree_Kinetis.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\SeekFree_Kinetis.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Sun Mar 11 22:40:39 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Mar 12 21:26:07 2018
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1280,12 +1280,12 @@ Global Symbols
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderGet
 </UL>
 
-<P><STRONG><a name="[f3]"></a>EncoderGet</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, encoder.o(i.EncoderGet))
+<P><STRONG><a name="[f3]"></a>EncoderGet</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, encoder.o(i.EncoderGet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = EncoderGet &rArr; gpio_get
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lptmr_pulse_get
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lptmr_pulse_get
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_get
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_quad_get
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_quad_get
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderClear
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
@@ -1772,7 +1772,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderClear
 </UL>
 
-<P><STRONG><a name="[f6]"></a>ftm_quad_get</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mk60_ftm.o(i.ftm_quad_get))
+<P><STRONG><a name="[f4]"></a>ftm_quad_get</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mk60_ftm.o(i.ftm_quad_get))
 <BR><BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderGet
 </UL>
 
@@ -1853,7 +1853,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderClear
 </UL>
 
-<P><STRONG><a name="[f4]"></a>lptmr_pulse_get</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, mk60_lptmr.o(i.lptmr_pulse_get))
+<P><STRONG><a name="[f6]"></a>lptmr_pulse_get</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, mk60_lptmr.o(i.lptmr_pulse_get))
 <BR><BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderGet
 </UL>
 

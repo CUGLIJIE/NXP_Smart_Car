@@ -491,9 +491,9 @@ Section Cross References
     motor.o(i.motor_init) refers to motor.o(.data) for motor_on
     encoder.o(i.EncoderClear) refers to mk60_ftm.o(i.ftm_quad_clean) for ftm_quad_clean
     encoder.o(i.EncoderClear) refers to mk60_lptmr.o(i.lptmr_pulse_clean) for lptmr_pulse_clean
-    encoder.o(i.EncoderGet) refers to mk60_lptmr.o(i.lptmr_pulse_get) for lptmr_pulse_get
-    encoder.o(i.EncoderGet) refers to mk60_gpio.o(i.gpio_get) for gpio_get
     encoder.o(i.EncoderGet) refers to mk60_ftm.o(i.ftm_quad_get) for ftm_quad_get
+    encoder.o(i.EncoderGet) refers to mk60_gpio.o(i.gpio_get) for gpio_get
+    encoder.o(i.EncoderGet) refers to mk60_lptmr.o(i.lptmr_pulse_get) for lptmr_pulse_get
     encoder.o(i.EncoderGet) refers to encoder.o(i.EncoderClear) for EncoderClear
     encoder.o(i.EncoderInit) refers to mk60_ftm.o(i.ftm_quad_init) for ftm_quad_init
     encoder.o(i.EncoderInit) refers to mk60_lptmr.o(i.lptmr_pulse_init) for lptmr_pulse_init
@@ -1739,7 +1739,7 @@ Image Symbol Table
     i.Disable_Wdog                           0x0000206c   Section        0  system_mk60.o(i.Disable_Wdog)
     i.EncoderClear                           0x00002088   Section        0  encoder.o(i.EncoderClear)
     i.EncoderGet                             0x00002096   Section        0  encoder.o(i.EncoderGet)
-    i.EncoderInit                            0x000020c8   Section        0  encoder.o(i.EncoderInit)
+    i.EncoderInit                            0x000020c6   Section        0  encoder.o(i.EncoderInit)
     i.FTM_port_mux                           0x000020f0   Section        0  mk60_ftm.o(i.FTM_port_mux)
     i.ImgProc                                0x000021f4   Section        0  rodeview.o(i.ImgProc)
     i.InRange                                0x00002274   Section        0  isr.o(i.InRange)
@@ -2225,8 +2225,8 @@ Image Symbol Table
     DirectionControlProc                     0x00001fb9   Thumb Code    36  directioncontrol.o(i.DirectionControlProc)
     Disable_Wdog                             0x0000206d   Thumb Code    22  system_mk60.o(i.Disable_Wdog)
     EncoderClear                             0x00002089   Thumb Code    14  encoder.o(i.EncoderClear)
-    EncoderGet                               0x00002097   Thumb Code    50  encoder.o(i.EncoderGet)
-    EncoderInit                              0x000020c9   Thumb Code    40  encoder.o(i.EncoderInit)
+    EncoderGet                               0x00002097   Thumb Code    48  encoder.o(i.EncoderGet)
+    EncoderInit                              0x000020c7   Thumb Code    40  encoder.o(i.EncoderInit)
     FTM_port_mux                             0x000020f1   Thumb Code   254  mk60_ftm.o(i.FTM_port_mux)
     ImgProc                                  0x000021f5   Thumb Code   118  rodeview.o(i.ImgProc)
     InRange                                  0x00002275   Thumb Code    18  isr.o(i.InRange)
@@ -2570,8 +2570,9 @@ Memory Map of the image
     0x00001fe0   0x0000008c   Code   RO         1954    i.DirectionErrorGet  directioncontrol.o
     0x0000206c   0x0000001c   Code   RO           15    i.Disable_Wdog      system_mk60.o
     0x00002088   0x0000000e   Code   RO         2061    i.EncoderClear      encoder.o
-    0x00002096   0x00000032   Code   RO         2062    i.EncoderGet        encoder.o
-    0x000020c8   0x00000028   Code   RO         2063    i.EncoderInit       encoder.o
+    0x00002096   0x00000030   Code   RO         2062    i.EncoderGet        encoder.o
+    0x000020c6   0x00000028   Code   RO         2063    i.EncoderInit       encoder.o
+    0x000020ee   0x00000002   PAD
     0x000020f0   0x00000104   Code   RO          205    i.FTM_port_mux      mk60_ftm.o
     0x000021f4   0x00000080   Code   RO         1823    i.ImgProc           rodeview.o
     0x00002274   0x00000012   Code   RO          887    i.InRange           isr.o
@@ -2768,7 +2769,7 @@ Image component sizes
        300         22          0          0          0       1444   crossrode.o
        212         14          0          2          0        957   cuver.o
        388         68          0         26          0       2580   directioncontrol.o
-       308         56          0          1          0       2736   encoder.o
+       306         56          0          1          0       2736   encoder.o
         88          8          0          1      11280       1103   imageprocess.o
       4836        592          0         20         80      10964   island.o
        216         24          0          0          0       5159   isr.o
@@ -2795,7 +2796,7 @@ Image component sizes
     ----------------------------------------------------------------------
      13394       1434       3220        216      31528     389230   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        10          0          0          8          3          0   (incl. Padding)
+        12          0          0          8          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 

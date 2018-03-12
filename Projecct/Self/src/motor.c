@@ -17,24 +17,24 @@ void motor_change(int16 motor_lf,int16 motor_rt)
     motor_rt = Limit(motor_rt, -10000, 10000);
 		if(motor_lf>0)
 		{
-	    ftm_pwm_duty(ftm0,ftm_ch1,0);
-		  ftm_pwm_duty(ftm0,ftm_ch0,motor_lf);
+	    ftm_pwm_duty(ftm0,ftm_ch2,motor_lf);
+		  ftm_pwm_duty(ftm0,ftm_ch3,0);
 		}
    else 
       {
-		  ftm_pwm_duty(ftm0,ftm_ch1,-motor_lf);
-		  ftm_pwm_duty(ftm0,ftm_ch0,0);
-			}
+		  ftm_pwm_duty(ftm0,ftm_ch2,0);
+		  ftm_pwm_duty(ftm0,ftm_ch3,-motor_lf);
+		}
 	if(motor_rt>0)
 		{
-			ftm_pwm_duty(ftm0,ftm_ch2,motor_rt);
-      ftm_pwm_duty(ftm0,ftm_ch3,0);
+			ftm_pwm_duty(ftm0,ftm_ch1,0);
+      ftm_pwm_duty(ftm0,ftm_ch0,motor_rt);
 	  }
 	    
 		 else 
 			 {
-		   		ftm_pwm_duty(ftm0,ftm_ch2,0);
-          ftm_pwm_duty(ftm0,ftm_ch3,-motor_rt);
+		   		ftm_pwm_duty(ftm0,ftm_ch1,-motor_rt);
+          ftm_pwm_duty(ftm0,ftm_ch0,0);
 			 }   
 	}
 	else{

@@ -14,13 +14,17 @@ void EncoderInit()
 
 void EncoderGet(int16_t* left, int16_t* right) 
 {
-			*left = lptmr_pulse_get();	
-    if(gpio_get(C6)) {
-        *right = -ftm_quad_get(ftm2);
+		
+	  *left = ftm_quad_get(ftm2);
+     if(gpio_get(C6))
+			 {
+        *right = -lptmr_pulse_get();	
     } else {
-        *right = ftm_quad_get(ftm2);
+       *right = lptmr_pulse_get();	
     }
-    EncoderClear();
+		
+		
+     EncoderClear();
 }
 
 void EncoderClear() 
