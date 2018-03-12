@@ -556,6 +556,7 @@ Section Cross References
     island.o(i.IslandActionGomiddle) refers to daddsub_clz.o(x$fpl$dsub) for __aeabi_dsub
     island.o(i.IslandActionGomiddle) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
     island.o(i.IslandActionGomiddle) refers to daddsub_clz.o(x$fpl$dadd) for __aeabi_dadd
+    island.o(i.IslandActionGomiddle) refers to directioncontrol.o(i.DirectionControlProc) for DirectionControlProc
     island.o(i.IslandActionGomiddle) refers to island.o(.data) for f_L_Island
     island.o(i.IslandActionGomiddle) refers to directioncontrol.o(.data) for pre_sight
     island.o(i.IslandActionGomiddle) refers to rodeview.o(.bss) for resultSet
@@ -1748,13 +1749,13 @@ Image Symbol Table
     i.IsStartLine                            0x00002350   Section        0  common_type.o(i.IsStartLine)
     i.IsStraightLine                         0x00002438   Section        0  common_type.o(i.IsStraightLine)
     i.IslandActionGomiddle                   0x0000246c   Section        0  island.o(i.IslandActionGomiddle)
-    i.IslandExitProc                         0x0000257c   Section        0  island.o(i.IslandExitProc)
-    i.IslandExitRec                          0x000026e8   Section        0  island.o(i.IslandExitRec)
-    i.IslandExitjudge                        0x00002a24   Section        0  island.o(i.IslandExitjudge)
-    i.IslandfristEntranceProc                0x00002a80   Section        0  island.o(i.IslandfristEntranceProc)
-    i.IslandfristEntranceRec                 0x00002b6c   Section        0  island.o(i.IslandfristEntranceRec)
-    i.IslandfristEntrancejudge               0x000032c8   Section        0  island.o(i.IslandfristEntrancejudge)
-    i.IslandsecondEntranceProc               0x00003300   Section        0  island.o(i.IslandsecondEntranceProc)
+    i.IslandExitProc                         0x0000256c   Section        0  island.o(i.IslandExitProc)
+    i.IslandExitRec                          0x000026d8   Section        0  island.o(i.IslandExitRec)
+    i.IslandExitjudge                        0x00002a14   Section        0  island.o(i.IslandExitjudge)
+    i.IslandfristEntranceProc                0x00002a70   Section        0  island.o(i.IslandfristEntranceProc)
+    i.IslandfristEntranceRec                 0x00002b5c   Section        0  island.o(i.IslandfristEntranceRec)
+    i.IslandfristEntrancejudge               0x000032b8   Section        0  island.o(i.IslandfristEntrancejudge)
+    i.IslandsecondEntranceProc               0x000032f0   Section        0  island.o(i.IslandsecondEntranceProc)
     i.IslandsecondEntranceRec                0x00003460   Section        0  island.o(i.IslandsecondEntranceRec)
     i.IslandsecondEntrancejudge              0x0000350c   Section        0  island.o(i.IslandsecondEntrancejudge)
     i.L_Slope_Figure                         0x000035e8   Section        0  island.o(i.L_Slope_Figure)
@@ -2234,14 +2235,14 @@ Image Symbol Table
     IsOutOfRoad                              0x000022f1   Thumb Code    86  common_type.o(i.IsOutOfRoad)
     IsStartLine                              0x00002351   Thumb Code   218  common_type.o(i.IsStartLine)
     IsStraightLine                           0x00002439   Thumb Code    48  common_type.o(i.IsStraightLine)
-    IslandActionGomiddle                     0x0000246d   Thumb Code   252  island.o(i.IslandActionGomiddle)
-    IslandExitProc                           0x0000257d   Thumb Code   326  island.o(i.IslandExitProc)
-    IslandExitRec                            0x000026e9   Thumb Code   762  island.o(i.IslandExitRec)
-    IslandExitjudge                          0x00002a25   Thumb Code    70  island.o(i.IslandExitjudge)
-    IslandfristEntranceProc                  0x00002a81   Thumb Code   204  island.o(i.IslandfristEntranceProc)
-    IslandfristEntranceRec                   0x00002b6d   Thumb Code  1758  island.o(i.IslandfristEntranceRec)
-    IslandfristEntrancejudge                 0x000032c9   Thumb Code    38  island.o(i.IslandfristEntrancejudge)
-    IslandsecondEntranceProc                 0x00003301   Thumb Code   316  island.o(i.IslandsecondEntranceProc)
+    IslandActionGomiddle                     0x0000246d   Thumb Code   236  island.o(i.IslandActionGomiddle)
+    IslandExitProc                           0x0000256d   Thumb Code   326  island.o(i.IslandExitProc)
+    IslandExitRec                            0x000026d9   Thumb Code   762  island.o(i.IslandExitRec)
+    IslandExitjudge                          0x00002a15   Thumb Code    70  island.o(i.IslandExitjudge)
+    IslandfristEntranceProc                  0x00002a71   Thumb Code   204  island.o(i.IslandfristEntranceProc)
+    IslandfristEntranceRec                   0x00002b5d   Thumb Code  1758  island.o(i.IslandfristEntranceRec)
+    IslandfristEntrancejudge                 0x000032b9   Thumb Code    38  island.o(i.IslandfristEntrancejudge)
+    IslandsecondEntranceProc                 0x000032f1   Thumb Code   332  island.o(i.IslandsecondEntranceProc)
     IslandsecondEntranceRec                  0x00003461   Thumb Code   154  island.o(i.IslandsecondEntranceRec)
     IslandsecondEntrancejudge                0x0000350d   Thumb Code   176  island.o(i.IslandsecondEntrancejudge)
     L_Slope_Figure                           0x000035e9   Thumb Code   170  island.o(i.L_Slope_Figure)
@@ -2581,14 +2582,14 @@ Memory Map of the image
     0x000022f0   0x00000060   Code   RO         2131    i.IsOutOfRoad       common_type.o
     0x00002350   0x000000e8   Code   RO         2132    i.IsStartLine       common_type.o
     0x00002438   0x00000034   Code   RO         2133    i.IsStraightLine    common_type.o
-    0x0000246c   0x00000110   Code   RO         2268    i.IslandActionGomiddle  island.o
-    0x0000257c   0x0000016c   Code   RO         2269    i.IslandExitProc    island.o
-    0x000026e8   0x0000033c   Code   RO         2270    i.IslandExitRec     island.o
-    0x00002a24   0x0000005c   Code   RO         2271    i.IslandExitjudge   island.o
-    0x00002a80   0x000000ec   Code   RO         2272    i.IslandfristEntranceProc  island.o
-    0x00002b6c   0x0000075c   Code   RO         2273    i.IslandfristEntranceRec  island.o
-    0x000032c8   0x00000038   Code   RO         2274    i.IslandfristEntrancejudge  island.o
-    0x00003300   0x00000160   Code   RO         2275    i.IslandsecondEntranceProc  island.o
+    0x0000246c   0x00000100   Code   RO         2268    i.IslandActionGomiddle  island.o
+    0x0000256c   0x0000016c   Code   RO         2269    i.IslandExitProc    island.o
+    0x000026d8   0x0000033c   Code   RO         2270    i.IslandExitRec     island.o
+    0x00002a14   0x0000005c   Code   RO         2271    i.IslandExitjudge   island.o
+    0x00002a70   0x000000ec   Code   RO         2272    i.IslandfristEntranceProc  island.o
+    0x00002b5c   0x0000075c   Code   RO         2273    i.IslandfristEntranceRec  island.o
+    0x000032b8   0x00000038   Code   RO         2274    i.IslandfristEntrancejudge  island.o
+    0x000032f0   0x00000170   Code   RO         2275    i.IslandsecondEntranceProc  island.o
     0x00003460   0x000000ac   Code   RO         2276    i.IslandsecondEntranceRec  island.o
     0x0000350c   0x000000dc   Code   RO         2277    i.IslandsecondEntrancejudge  island.o
     0x000035e8   0x000000b4   Code   RO         2278    i.L_Slope_Figure    island.o
@@ -2771,7 +2772,7 @@ Image component sizes
        388         68          0         26          0       2580   directioncontrol.o
        306         56          0          1          0       2736   encoder.o
         88          8          0          1      11280       1103   imageprocess.o
-      4836        592          0         20         80      10964   island.o
+      4836        592          0         20         80      10992   island.o
        216         24          0          0          0       5159   isr.o
        154         12          0          0          0        988   main.o
        420         22          0          0          0       3198   mk60_dma.o
@@ -2794,7 +2795,7 @@ Image component sizes
        330         42          0          0          0     244210   system_mk60.o
 
     ----------------------------------------------------------------------
-     13394       1434       3220        216      31528     389230   Object Totals
+     13394       1434       3220        216      31528     389258   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          8          3          0   (incl. Padding)
 
@@ -2924,8 +2925,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     24288       1986       3772        216      31624     387158   Grand Totals
-     24288       1986       3772        216      31624     387158   ELF Image Totals
+     24288       1986       3772        216      31624     387186   Grand Totals
+     24288       1986       3772        216      31624     387186   ELF Image Totals
      24288       1986       3772        216          0          0   ROM Totals
 
 ==============================================================================

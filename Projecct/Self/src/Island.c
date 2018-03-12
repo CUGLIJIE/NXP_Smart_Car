@@ -437,7 +437,7 @@ void IslandsecondEntranceProc()
 		f_SecondEntranceInflexion=FALSE;
 		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
 		{
-			resultSet.rightBorder[row]=resultSet.rightBorder[ROW>>1]-((resultSet.rightBorder[ROW>>1]-SecondEntranceInflexionCol)/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
+			resultSet.rightBorder[row]=resultSet.rightBorder[ROW>>1]-((resultSet.rightBorder[ROW>>1]-SecondEntranceInflexionCol)/(ROW/2-SecondEntranceInflexionRow))*(pre_sight+3-row);
 			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
 		}
 	}
@@ -446,7 +446,7 @@ void IslandsecondEntranceProc()
 		f_SecondEntranceInflexion=FALSE;
 		for(uint8_t row=pre_sight+3;row>pre_sight-3;row--)
 		{
-			resultSet.leftBorder[row]=resultSet.leftBorder[ROW>>1]+((SecondEntranceInflexionCol-resultSet.leftBorder[ROW>>1])/(ROW/2-SecondEntranceInflexionRow))*(ROW/2-row);
+			resultSet.leftBorder[row]=resultSet.leftBorder[ROW>>1]+((SecondEntranceInflexionCol-resultSet.leftBorder[ROW>>1])/(ROW/2-SecondEntranceInflexionRow))*(pre_sight+3-row);
 			resultSet.middleLine[row]=(resultSet.leftBorder[row]+resultSet.rightBorder[row])/2;
 		}
 	}
@@ -655,7 +655,7 @@ void IslandActionGomiddle()
 		for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) 
 		{
 						resultSet.rightBorder[i]-= i*1.5;
-			      resultSet.middleLine[i]=(resultSet.leftBorder[i]+resultSet.rightBorder[i])>>1;
+			      resultSet.middleLine[i]=resultSet.rightBorder[i];
 		}
 	}
 	else if(f_R_Island)
@@ -663,11 +663,11 @@ void IslandActionGomiddle()
 		for(int16_t i = pre_sight - 3; i < pre_sight + 3; ++i) 
 		{
 						resultSet.leftBorder[i]+= i*1.5;
-			      resultSet.middleLine[i]=(resultSet.leftBorder[i]+resultSet.rightBorder[i])>>1;
+			      resultSet.middleLine[i]=resultSet.leftBorder[i];
 		}
 	}
 	
-//	  DirectionControlProc(resultSet.middleLine, COL>>1);
+	  DirectionControlProc(resultSet.middleLine, COL>>1);
 	
 } 
 

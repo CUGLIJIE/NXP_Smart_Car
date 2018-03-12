@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\SeekFree_Kinetis.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\SeekFree_Kinetis.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Mar 12 21:26:07 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Mar 12 21:59:45 2018
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1264,6 +1264,7 @@ Global Symbols
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
 <P><STRONG><a name="[12c]"></a>Disable_Wdog</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, system_mk60.o(i.Disable_Wdog))
@@ -1356,10 +1357,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
-<P><STRONG><a name="[106]"></a>IslandActionGomiddle</STRONG> (Thumb, 252 bytes, Stack size 40 bytes, island.o(i.IslandActionGomiddle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = IslandActionGomiddle &rArr; __aeabi_dmul
+<P><STRONG><a name="[106]"></a>IslandActionGomiddle</STRONG> (Thumb, 236 bytes, Stack size 40 bytes, island.o(i.IslandActionGomiddle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlProc
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
@@ -1398,7 +1400,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[10d]"></a>IslandfristEntranceProc</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, island.o(i.IslandfristEntranceProc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
@@ -1430,7 +1432,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
-<P><STRONG><a name="[132]"></a>IslandsecondEntranceProc</STRONG> (Thumb, 316 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceProc))
+<P><STRONG><a name="[132]"></a>IslandsecondEntranceProc</STRONG> (Thumb, 332 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceProc))
 <BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
 </UL>
 
@@ -1439,7 +1441,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[114]"></a>IslandsecondEntrancejudge</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, island.o(i.IslandsecondEntrancejudge))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = IslandsecondEntrancejudge &rArr; IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = IslandsecondEntrancejudge &rArr; IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntranceRec
