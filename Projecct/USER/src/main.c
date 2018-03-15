@@ -33,9 +33,11 @@ int main(void)
 	{
 		if(mt9v032_finish_flag)
 			{
+				
 				binaryzation((uint8_t *)image);
 //				seekfree_sendimg_032();
 				ImgProc();
+//				IslandfristEntranceRec();
 //				translate_image();
 //				LeftIsland.anotherslope[0]=R_Slope_Figure(6);
 //				RightIsland.anotherslope[0]=L_Slope_Figure(6);

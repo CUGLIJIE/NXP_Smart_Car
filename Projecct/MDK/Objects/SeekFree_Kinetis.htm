@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\SeekFree_Kinetis.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\SeekFree_Kinetis.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Mon Mar 12 21:59:45 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Mar 15 22:50:22 2018
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -432,8 +432,8 @@ Global Symbols
 <P><STRONG><a name="[189]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[b1]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; ImgProc &rArr; Summarycontrol &rArr; get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; ImgProc &rArr; Summarycontrol &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -829,7 +829,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
+<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
 </UL>
 
 <P><STRONG><a name="[18c]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -1243,7 +1243,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[131]"></a>CrossRoadAction</STRONG> (Thumb, 182 bytes, Stack size 20 bytes, crossrode.o(i.CrossRoadAction))
+<P><STRONG><a name="[130]"></a>CrossRoadAction</STRONG> (Thumb, 182 bytes, Stack size 20 bytes, crossrode.o(i.CrossRoadAction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = CrossRoadAction
 </UL>
 <BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
@@ -1264,10 +1264,9 @@ Global Symbols
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
-<P><STRONG><a name="[12c]"></a>Disable_Wdog</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, system_mk60.o(i.Disable_Wdog))
+<P><STRONG><a name="[12b]"></a>Disable_Wdog</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, system_mk60.o(i.Disable_Wdog))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
@@ -1277,7 +1276,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lptmr_pulse_clean
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_quad_clean
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
+<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderGet
 </UL>
 
@@ -1289,7 +1288,7 @@ Global Symbols
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_quad_get
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderClear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
+<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
 </UL>
 
 <P><STRONG><a name="[f7]"></a>EncoderInit</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, encoder.o(i.EncoderInit))
@@ -1308,12 +1307,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;port_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
+<BR>[Called By]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
 </UL>
 
 <P><STRONG><a name="[fd]"></a>ImgProc</STRONG> (Thumb, 118 bytes, Stack size 24 bytes, rodeview.o(i.ImgProc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = ImgProc &rArr; Summarycontrol &rArr; get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<LI>Call Chain = ImgProc &rArr; Summarycontrol &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
@@ -1332,13 +1331,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13e]"></a>IsCrossRoad</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, crossrode.o(i.IsCrossRoad))
-<BR><BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
 <P><STRONG><a name="[13d]"></a>IsOutOfRoad</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, common_type.o(i.IsOutOfRoad))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IsOutOfRoad
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
 <P><STRONG><a name="[103]"></a>IsStartLine</STRONG> (Thumb, 218 bytes, Stack size 24 bytes, common_type.o(i.IsStartLine))
@@ -1346,7 +1345,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InRange
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
 <P><STRONG><a name="[105]"></a>IsStraightLine</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, common_type.o(i.IsStraightLine))
@@ -1354,110 +1353,90 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InRange
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
-<P><STRONG><a name="[106]"></a>IslandActionGomiddle</STRONG> (Thumb, 236 bytes, Stack size 40 bytes, island.o(i.IslandActionGomiddle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlProc
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
+<P><STRONG><a name="[109]"></a>IslandActionGomiddle</STRONG> (Thumb, 84 bytes, Stack size 0 bytes, island.o(i.IslandActionGomiddle))
+<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
 </UL>
 
-<P><STRONG><a name="[109]"></a>IslandExitProc</STRONG> (Thumb, 326 bytes, Stack size 8 bytes, island.o(i.IslandExitProc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
-<LI>Call Chain = IslandExitProc &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
-</UL>
-
-<P><STRONG><a name="[10b]"></a>IslandExitRec</STRONG> (Thumb, 762 bytes, Stack size 8 bytes, island.o(i.IslandExitRec))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
-<LI>Call Chain = IslandExitRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
-</UL>
-
-<P><STRONG><a name="[10c]"></a>IslandExitjudge</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, island.o(i.IslandExitjudge))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
-<LI>Call Chain = IslandExitjudge &rArr; IslandExitRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitRec
-</UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
-</UL>
-
-<P><STRONG><a name="[10d]"></a>IslandfristEntranceProc</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, island.o(i.IslandfristEntranceProc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
-</UL>
-<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
-</UL>
-
-<P><STRONG><a name="[10e]"></a>IslandfristEntranceRec</STRONG> (Thumb, 1758 bytes, Stack size 16 bytes, island.o(i.IslandfristEntranceRec))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
-<LI>Call Chain = IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
-</UL>
-<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntrancejudge
-</UL>
-
-<P><STRONG><a name="[113]"></a>IslandfristEntrancejudge</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, island.o(i.IslandfristEntrancejudge))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
-</UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
-</UL>
-
-<P><STRONG><a name="[132]"></a>IslandsecondEntranceProc</STRONG> (Thumb, 332 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceProc))
+<P><STRONG><a name="[132]"></a>IslandExitProc</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, island.o(i.IslandExitProc))
 <BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
 </UL>
 
-<P><STRONG><a name="[115]"></a>IslandsecondEntranceRec</STRONG> (Thumb, 154 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceRec))
-<BR><BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
-</UL>
-
-<P><STRONG><a name="[114]"></a>IslandsecondEntrancejudge</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, island.o(i.IslandsecondEntrancejudge))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = IslandsecondEntrancejudge &rArr; IslandfristEntranceProc &rArr; IslandActionGomiddle &rArr; DirectionControlProc &rArr; DirectionErrorGet &rArr; __aeabi_dmul
+<P><STRONG><a name="[106]"></a>IslandExitRec</STRONG> (Thumb, 716 bytes, Stack size 8 bytes, island.o(i.IslandExitRec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = IslandExitRec &rArr; gpio_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntranceRec
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
 </UL>
 
-<P><STRONG><a name="[112]"></a>L_Slope_Figure</STRONG> (Thumb, 170 bytes, Stack size 40 bytes, island.o(i.L_Slope_Figure))
+<P><STRONG><a name="[107]"></a>IslandExitjudge</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, island.o(i.IslandExitjudge))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = IslandExitjudge &rArr; IslandExitRec &rArr; gpio_set
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitRec
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+</UL>
+
+<P><STRONG><a name="[108]"></a>IslandfristEntranceProc</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, island.o(i.IslandfristEntranceProc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = IslandfristEntranceProc &rArr; gpio_set
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
+</UL>
+<BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
+</UL>
+
+<P><STRONG><a name="[10a]"></a>IslandfristEntranceRec</STRONG> (Thumb, 1396 bytes, Stack size 16 bytes, island.o(i.IslandfristEntranceRec))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = IslandfristEntranceRec &rArr; R_Slope_Figure &rArr; __aeabi_ddiv
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntrancejudge
+</UL>
+
+<P><STRONG><a name="[10f]"></a>IslandfristEntrancejudge</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, island.o(i.IslandfristEntrancejudge))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; R_Slope_Figure &rArr; __aeabi_ddiv
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+</UL>
+
+<P><STRONG><a name="[131]"></a>IslandsecondEntranceProc</STRONG> (Thumb, 354 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceProc))
+<BR><BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
+</UL>
+
+<P><STRONG><a name="[111]"></a>IslandsecondEntranceRec</STRONG> (Thumb, 380 bytes, Stack size 0 bytes, island.o(i.IslandsecondEntranceRec))
+<BR><BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
+</UL>
+
+<P><STRONG><a name="[110]"></a>IslandsecondEntrancejudge</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, island.o(i.IslandsecondEntrancejudge))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = IslandsecondEntrancejudge &rArr; IslandfristEntranceProc &rArr; gpio_set
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntranceRec
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+</UL>
+
+<P><STRONG><a name="[10e]"></a>L_Slope_Figure</STRONG> (Thumb, 170 bytes, Stack size 40 bytes, island.o(i.L_Slope_Figure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = L_Slope_Figure &rArr; __aeabi_ddiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
 </UL>
 
 <P><STRONG><a name="[fe]"></a>LeftBorderSearchFrom</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, bordersearch.o(i.LeftBorderSearchFrom))
@@ -1467,25 +1446,25 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[144]"></a>Limit</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, isr.o(i.Limit))
-<BR><BR>[Called By]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
+<BR><BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
 </UL>
 
 <P><STRONG><a name="[e5]"></a>Limit_f</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, isr.o(i.Limit_f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Limit_f &rArr; __aeabi_cfcmple
 </UL>
-<BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
 </UL>
 
-<P><STRONG><a name="[11a]"></a>MainProc</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, encoder.o(i.MainProc))
+<P><STRONG><a name="[117]"></a>MainProc</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, encoder.o(i.MainProc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MainProc &rArr; SpeedControlProc &rArr; SpeedControlPID &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distancecontrol
+<BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;distancecontrol
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderGet
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderClear
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIT0_IRQHandler
 </UL>
@@ -1497,7 +1476,7 @@ Global Symbols
 <P><STRONG><a name="[e4]"></a>Min_f</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, isr.o(i.Min_f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Min_f
 </UL>
-<BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
 </UL>
@@ -1505,87 +1484,84 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, system_mk60.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_mk60d10.o(RESET)
 </UL>
-<P><STRONG><a name="[10a]"></a>OLEDPrintf</STRONG> (Thumb, 38 bytes, Stack size 32 bytes, seekfree_oled.o(i.OLEDPrintf))
+<P><STRONG><a name="[11a]"></a>OLEDPrintf</STRONG> (Thumb, 38 bytes, Stack size 32 bytes, seekfree_oled.o(i.OLEDPrintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
+<BR>[Calls]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitRec
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitProc
 </UL>
 
-<P><STRONG><a name="[123]"></a>OLED_DLY_ms</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, seekfree_oled.o(i.OLED_DLY_ms))
-<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<P><STRONG><a name="[121]"></a>OLED_DLY_ms</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, seekfree_oled.o(i.OLED_DLY_ms))
+<BR><BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[11e]"></a>OLED_Fill</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_Fill))
+<P><STRONG><a name="[11c]"></a>OLED_Fill</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_Fill))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = OLED_Fill &rArr; OLED_WrDat &rArr; gpio_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
+<BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[121]"></a>OLED_Init</STRONG> (Thumb, 288 bytes, Stack size 8 bytes, seekfree_oled.o(i.OLED_Init))
+<P><STRONG><a name="[11f]"></a>OLED_Init</STRONG> (Thumb, 288 bytes, Stack size 8 bytes, seekfree_oled.o(i.OLED_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = OLED_Init &rArr; OLED_Fill &rArr; OLED_WrDat &rArr; gpio_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;port_init_NoAlt
+<BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;port_init_NoAlt
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DLY_ms
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DLY_ms
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[11d]"></a>OLED_P6x8Str</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, seekfree_oled.o(i.OLED_P6x8Str))
+<P><STRONG><a name="[11b]"></a>OLED_P6x8Str</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, seekfree_oled.o(i.OLED_P6x8Str))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = OLED_P6x8Str &rArr; OLED_Set_Pos &rArr; OLED_WrCmd &rArr; gpio_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
+<BR>[Calls]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
+<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
 </UL>
 
-<P><STRONG><a name="[124]"></a>OLED_Set_Pos</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_Set_Pos))
+<P><STRONG><a name="[122]"></a>OLED_Set_Pos</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_Set_Pos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = OLED_Set_Pos &rArr; OLED_WrCmd &rArr; gpio_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
+<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[11f]"></a>OLED_WrCmd</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_WrCmd))
+<P><STRONG><a name="[11d]"></a>OLED_WrCmd</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_WrCmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = OLED_WrCmd &rArr; gpio_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
-<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[120]"></a>OLED_WrDat</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_WrDat))
+<P><STRONG><a name="[11e]"></a>OLED_WrDat</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, seekfree_oled.o(i.OLED_WrDat))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = OLED_WrDat &rArr; gpio_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
+<BR>[Called By]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
 </UL>
 
 <P><STRONG><a name="[57]"></a>PIT0_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, isr.o(i.PIT0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = PIT0_IRQHandler &rArr; MainProc &rArr; SpeedControlProc &rArr; SpeedControlPID &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
+<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mk60d10.o(RESET)
 </UL>
@@ -1595,18 +1571,18 @@ Global Symbols
 <P><STRONG><a name="[6c]"></a>PORTC_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, isr.o(i.PORTC_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = PORTC_IRQHandler &rArr; VSYNC
 </UL>
-<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VSYNC
+<BR>[Calls]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VSYNC
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mk60d10.o(RESET)
 </UL>
-<P><STRONG><a name="[10f]"></a>R_Slope_Figure</STRONG> (Thumb, 172 bytes, Stack size 40 bytes, island.o(i.R_Slope_Figure))
+<P><STRONG><a name="[10b]"></a>R_Slope_Figure</STRONG> (Thumb, 172 bytes, Stack size 40 bytes, island.o(i.R_Slope_Figure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = R_Slope_Figure &rArr; __aeabi_ddiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+<BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
 </UL>
 
 <P><STRONG><a name="[ff]"></a>RightBorderSearchFrom</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, bordersearch.o(i.RightBorderSearchFrom))
@@ -1615,22 +1591,22 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
 </UL>
 
-<P><STRONG><a name="[126]"></a>SYSTEM_CLK</STRONG> (Thumb, 170 bytes, Stack size 8 bytes, system_mk60.o(i.SYSTEM_CLK))
+<P><STRONG><a name="[124]"></a>SYSTEM_CLK</STRONG> (Thumb, 170 bytes, Stack size 8 bytes, system_mk60.o(i.SYSTEM_CLK))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SYSTEM_CLK
 </UL>
-<BR>[Calls]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;div_set
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;div_set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
 </UL>
 
-<P><STRONG><a name="[11c]"></a>SpeedControlProc</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, speedcontrol.o(i.SpeedControlProc))
+<P><STRONG><a name="[119]"></a>SpeedControlProc</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, speedcontrol.o(i.SpeedControlProc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = SpeedControlProc &rArr; SpeedControlPID &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlFilter
+<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlFilter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
+<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
 </UL>
 
 <P><STRONG><a name="[102]"></a>SpeedTargetSet</STRONG> (Thumb, 220 bytes, Stack size 56 bytes, speedcontrol.o(i.SpeedTargetSet))
@@ -1638,10 +1614,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
@@ -1651,15 +1627,15 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Start &rArr; gpio_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSTEM_CLK
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_Wdog
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSTEM_CLK
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_Wdog
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mk60d10.o(.text)
 </UL>
-<P><STRONG><a name="[12d]"></a>SteerActuatorInit</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, steeractuator.o(i.SteerActuatorInit))
+<P><STRONG><a name="[12c]"></a>SteerActuatorInit</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, steeractuator.o(i.SteerActuatorInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = SteerActuatorInit &rArr; ftm_pwm_init &rArr; FTM_port_mux &rArr; port_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
+<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1667,21 +1643,21 @@ Global Symbols
 <P><STRONG><a name="[ec]"></a>SteerActuatorOut</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, steeractuator.o(i.SteerActuatorOut))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SteerActuatorOut &rArr; ftm_pwm_duty
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_duty
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_duty
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlProc
 </UL>
 
 <P><STRONG><a name="[101]"></a>Summarycontrol</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, rode_mix.o(i.Summarycontrol))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = Summarycontrol &rArr; get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
+<LI>Call Chain = Summarycontrol &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CrossRoadAction
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntranceProc
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitProc
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDPrintf
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CrossRoadAction
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntranceProc
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitProc
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
 </UL>
@@ -1693,7 +1669,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mk60d10.o(RESET)
 </UL>
-<P><STRONG><a name="[125]"></a>VSYNC</STRONG> (Thumb, 72 bytes, Stack size 12 bytes, seekfree_mt9v032.o(i.VSYNC))
+<P><STRONG><a name="[123]"></a>VSYNC</STRONG> (Thumb, 72 bytes, Stack size 12 bytes, seekfree_mt9v032.o(i.VSYNC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = VSYNC
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTC_IRQHandler
@@ -1704,7 +1680,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InRange
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
+<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rode_type
 </UL>
 
 <P><STRONG><a name="[ce]"></a>__ARM_fpclassify</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, fpclassify.o(i.__ARM_fpclassify))
@@ -1737,12 +1713,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[11b]"></a>distancecontrol</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, encoder.o(i.distancecontrol))
-<BR><BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
+<P><STRONG><a name="[118]"></a>distancecontrol</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, encoder.o(i.distancecontrol))
+<BR><BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainProc
 </UL>
 
-<P><STRONG><a name="[127]"></a>div_set</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, system_mk60.o(i.div_set))
-<BR><BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSTEM_CLK
+<P><STRONG><a name="[125]"></a>div_set</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, system_mk60.o(i.div_set))
+<BR><BR>[Called By]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYSTEM_CLK
 </UL>
 
 <P><STRONG><a name="[13b]"></a>dma_portx2buff_init</STRONG> (Thumb, 398 bytes, Stack size 56 bytes, mk60_dma.o(i.dma_portx2buff_init))
@@ -1754,20 +1730,20 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_init
 </UL>
 
-<P><STRONG><a name="[12f]"></a>ftm_pwm_duty</STRONG> (Thumb, 96 bytes, Stack size 12 bytes, mk60_ftm.o(i.ftm_pwm_duty))
+<P><STRONG><a name="[12e]"></a>ftm_pwm_duty</STRONG> (Thumb, 96 bytes, Stack size 12 bytes, mk60_ftm.o(i.ftm_pwm_duty))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = ftm_pwm_duty
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteerActuatorOut
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_change
 </UL>
 
-<P><STRONG><a name="[12e]"></a>ftm_pwm_init</STRONG> (Thumb, 270 bytes, Stack size 40 bytes, mk60_ftm.o(i.ftm_pwm_init))
+<P><STRONG><a name="[12d]"></a>ftm_pwm_init</STRONG> (Thumb, 270 bytes, Stack size 40 bytes, mk60_ftm.o(i.ftm_pwm_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = ftm_pwm_init &rArr; FTM_port_mux &rArr; port_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_port_mux
 </UL>
 <BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_init
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteerActuatorInit
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteerActuatorInit
 </UL>
 
 <P><STRONG><a name="[f1]"></a>ftm_quad_clean</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, mk60_ftm.o(i.ftm_quad_clean))
@@ -1798,18 +1774,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_init
 </UL>
 
-<P><STRONG><a name="[130]"></a>get_rode_type</STRONG> (Thumb, 192 bytes, Stack size 8 bytes, rode_mix.o(i.get_rode_type))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
+<P><STRONG><a name="[12f]"></a>get_rode_type</STRONG> (Thumb, 224 bytes, Stack size 8 bytes, rode_mix.o(i.get_rode_type))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; R_Slope_Figure &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WhichCurve
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsCrossRoad
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsStraightLine
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsStartLine
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsOutOfRoad
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
-<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntrancejudge
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntrancejudge
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
 </UL>
 <BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
 </UL>
@@ -1831,7 +1806,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_portx2buff_init
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderInit
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BuzzleInit
 </UL>
@@ -1839,16 +1814,16 @@ Global Symbols
 <P><STRONG><a name="[de]"></a>gpio_set</STRONG> (Thumb, 66 bytes, Stack size 20 bytes, mk60_gpio.o(i.gpio_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = gpio_set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrDat
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WrCmd
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BuzzleInit
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Summarycontrol
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitRec
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceProc
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitRec
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandsecondEntrancejudge
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandExitjudge
 </UL>
 
 <P><STRONG><a name="[f2]"></a>lptmr_pulse_clean</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, mk60_lptmr.o(i.lptmr_pulse_clean))
@@ -1868,8 +1843,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b2]"></a>main</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = main &rArr; ImgProc &rArr; Summarycontrol &rArr; get_rode_type &rArr; IslandfristEntrancejudge &rArr; IslandfristEntranceRec &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<LI>Call Chain = main &rArr; ImgProc &rArr; Summarycontrol &rArr; OLEDPrintf &rArr; vsprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pit_init
@@ -1878,8 +1853,8 @@ Global Symbols
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_init
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_init
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;binaryzation
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteerActuatorInit
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SteerActuatorInit
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ImgProc
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncoderInit
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BuzzleInit
@@ -1887,19 +1862,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[12a]"></a>motor_change</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, motor.o(i.motor_change))
+<P><STRONG><a name="[128]"></a>motor_change</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, motor.o(i.motor_change))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = motor_change &rArr; ftm_pwm_duty
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_duty
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_duty
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Limit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
+<BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
 </UL>
 
 <P><STRONG><a name="[140]"></a>motor_init</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, motor.o(i.motor_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = motor_init &rArr; ftm_pwm_init &rArr; FTM_port_mux &rArr; port_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
+<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ftm_pwm_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1931,10 +1906,10 @@ Global Symbols
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_init
 </UL>
 
-<P><STRONG><a name="[122]"></a>port_init_NoAlt</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, mk60_port.o(i.port_init_NoAlt))
+<P><STRONG><a name="[120]"></a>port_init_NoAlt</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, mk60_port.o(i.port_init_NoAlt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = port_init_NoAlt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
 <P><STRONG><a name="[df]"></a>row_finished</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, seekfree_mt9v032.o(i.row_finished))
@@ -2004,11 +1979,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rt_ctype_table.o(.text)
 </UL>
-<P><STRONG><a name="[117]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
+<P><STRONG><a name="[114]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
+<BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
 </UL>
 
 <P><STRONG><a name="[14a]"></a>_d2f</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f), UNUSED)
@@ -2020,9 +1995,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
 <P><STRONG><a name="[14d]"></a>_dadd</STRONG> (Thumb, 332 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)
@@ -2035,11 +2009,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
-<P><STRONG><a name="[116]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
+<P><STRONG><a name="[113]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
+<BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
 </UL>
 
 <P><STRONG><a name="[150]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -2052,35 +2026,33 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionErrorGet
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
 <P><STRONG><a name="[151]"></a>_dfix</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, dfix.o(x$fpl$dfix), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dnaninf
 </UL>
 
-<P><STRONG><a name="[107]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
-<BR><BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<P><STRONG><a name="[112]"></a>__aeabi_i2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt))
+<BR><BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;R_Slope_Figure
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;L_Slope_Figure
 </UL>
 
 <P><STRONG><a name="[193]"></a>_dflt</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dflt), UNUSED)
 
-<P><STRONG><a name="[12b]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
+<P><STRONG><a name="[129]"></a>__aeabi_ui2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu))
 <BR><BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
 </UL>
 
 <P><STRONG><a name="[194]"></a>_dfltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, dflt_clz.o(x$fpl$dfltu), UNUSED)
 
-<P><STRONG><a name="[110]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
+<P><STRONG><a name="[10c]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
 </UL>
 
 <P><STRONG><a name="[152]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
@@ -2097,9 +2069,8 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionErrorGet
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
-<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
 <P><STRONG><a name="[154]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul), UNUSED)
@@ -2124,22 +2095,21 @@ Global Symbols
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd
 </UL>
 
-<P><STRONG><a name="[111]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
+<P><STRONG><a name="[10d]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlPID
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
 </UL>
 
 <P><STRONG><a name="[155]"></a>_drcmple</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, drleqf.o(x$fpl$drleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_dcmple_InfNaN
 </UL>
 
-<P><STRONG><a name="[108]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
+<P><STRONG><a name="[12a]"></a>__aeabi_dsub</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dsub
 </UL>
 <BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandActionGomiddle
 </UL>
 
 <P><STRONG><a name="[157]"></a>_dsub</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, daddsub_clz.o(x$fpl$dsub), UNUSED)
@@ -2153,7 +2123,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionErrorGet
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DirectionControlPID
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedTargetSet
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IslandfristEntranceRec
 </UL>
 
 <P><STRONG><a name="[159]"></a>_f2d</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d), UNUSED)
@@ -2206,7 +2176,7 @@ Global Symbols
 
 <P><STRONG><a name="[195]"></a>_fflt</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt), UNUSED)
 
-<P><STRONG><a name="[119]"></a>__aeabi_cfcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fleqf.o(x$fpl$fleqf))
+<P><STRONG><a name="[116]"></a>__aeabi_cfcmple</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fleqf.o(x$fpl$fleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_cfcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Limit_f
@@ -2249,7 +2219,7 @@ Global Symbols
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_d2f
 </UL>
 
-<P><STRONG><a name="[118]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, frleqf.o(x$fpl$frleqf))
+<P><STRONG><a name="[115]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, frleqf.o(x$fpl$frleqf))
 <BR><BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Min_f
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Limit_f
 </UL>
@@ -2298,20 +2268,20 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;camera_init
 </UL>
 
-<P><STRONG><a name="[129]"></a>SpeedControlFilter</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, speedcontrol.o(i.SpeedControlFilter))
-<BR><BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
+<P><STRONG><a name="[127]"></a>SpeedControlFilter</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, speedcontrol.o(i.SpeedControlFilter))
+<BR><BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
 </UL>
 
-<P><STRONG><a name="[128]"></a>SpeedControlPID</STRONG> (Thumb, 190 bytes, Stack size 56 bytes, speedcontrol.o(i.SpeedControlPID))
+<P><STRONG><a name="[126]"></a>SpeedControlPID</STRONG> (Thumb, 190 bytes, Stack size 56 bytes, speedcontrol.o(i.SpeedControlPID))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = SpeedControlPID &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<BR>[Calls]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
+<BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpeedControlProc
 </UL>
 
 <P><STRONG><a name="[e0]"></a>DirectionControlPID</STRONG> (Thumb, 164 bytes, Stack size 40 bytes, directioncontrol.o(i.DirectionControlPID))

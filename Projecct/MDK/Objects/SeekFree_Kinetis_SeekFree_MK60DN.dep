@@ -284,7 +284,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\USER\src\main.c)(0x5AA67FED)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\USER\src\main.c)(0x5AA92970)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
 I (..\..\Libraries\drives\inc\common.h)(0x5A6D8D66)
@@ -673,7 +673,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\rodeview.c)(0x5AA4F4F4)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\rodeview.o --omf_browse .\objects\rodeview.crf --depend .\objects\rodeview.d)
+F (..\Self\src\rodeview.c)(0x5AA913C2)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\rodeview.o --omf_browse .\objects\rodeview.crf --depend .\objects\rodeview.d)
 I (..\Self\inc\rodeview.h)(0x5A98184E)
 I (..\..\Libraries\drives\inc\common.h)(0x5A6D8D66)
 I (..\..\Libraries\startup\DeviceSupport\MK60D10.h)(0x59C09B65)
@@ -847,7 +847,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\SpeedControl.c)(0x5A9AC740)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\speedcontrol.o --omf_browse .\objects\speedcontrol.crf --depend .\objects\speedcontrol.d)
+F (..\Self\src\SpeedControl.c)(0x5AA93F26)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\speedcontrol.o --omf_browse .\objects\speedcontrol.crf --depend .\objects\speedcontrol.d)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
@@ -904,7 +904,7 @@ I (..\Self\inc\PinMap.h)(0x5A9A373B)
 I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\DirectionControl.c)(0x5A9D6768)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\directioncontrol.o --omf_browse .\objects\directioncontrol.crf --depend .\objects\directioncontrol.d)
+F (..\Self\src\DirectionControl.c)(0x5AA93F60)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\directioncontrol.o --omf_browse .\objects\directioncontrol.crf --depend .\objects\directioncontrol.d)
 I (..\Self\inc\DirectionControl.h)(0x5A981784)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
@@ -1018,7 +1018,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\motor.c)(0x5AA67FED)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
+F (..\Self\src\motor.c)(0x5AA68ECF)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
 I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
@@ -1075,7 +1075,7 @@ I (..\Self\inc\PinMap.h)(0x5A9A373B)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\Encoder.c)(0x5AA67FED)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
+F (..\Self\src\Encoder.c)(0x5AA68ECF)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
@@ -1133,7 +1133,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
 I (..\Self\inc\Island.h)(0x5AA527C7)
-F (..\Self\src\param.c)(0x5A9A3687)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\param.o --omf_browse .\objects\param.crf --depend .\objects\param.d)
+F (..\Self\src\param.c)(0x5AA92F64)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\param.o --omf_browse .\objects\param.crf --depend .\objects\param.d)
 I (..\Self\inc\param.h)(0x5A709D5F)
 I (..\..\Libraries\drives\inc\headfile.h)(0x5A9CFE1A)
 I (..\..\Libraries\drives\inc\MK60_port_cfg.h)(0x5A378C91)
@@ -1364,7 +1364,7 @@ I (..\Self\inc\motor.h)(0x5A98184E)
 I (..\Self\inc\Encoder.h)(0x5A98E5A6)
 I (..\Self\inc\SpeedControl.h)(0x5A981E37)
 I (..\Self\inc\param.h)(0x5A709D5F)
-F (..\Self\src\Rode_Mix.c)(0x5AA274F9)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\rode_mix.o --omf_browse .\objects\rode_mix.crf --depend .\objects\rode_mix.d)
+F (..\Self\src\Rode_Mix.c)(0x5AAA83A2)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\rode_mix.o --omf_browse .\objects\rode_mix.crf --depend .\objects\rode_mix.d)
 I (..\Self\inc\Rode_Mix.h)(0x5A7593B1)
 I (..\..\Libraries\drives\inc\common.h)(0x5A6D8D66)
 I (..\..\Libraries\startup\DeviceSupport\MK60D10.h)(0x59C09B65)
@@ -1426,7 +1426,7 @@ I (..\Self\inc\param.h)(0x5A709D5F)
 I (..\Self\inc\CrossRode.h)(0x5A74503A)
 I (..\Self\inc\common_type.h)(0x5A759382)
 I (..\Self\inc\Island.h)(0x5AA527C7)
-F (..\Self\src\Island.c)(0x5AA687D0)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\island.o --omf_browse .\objects\island.crf --depend .\objects\island.d)
+F (..\Self\src\Island.c)(0x5AAA882D)(--c99 -c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I ..\USER\inc -I ..\USER\src -I ..\..\Libraries\startup\CoreSupport -I ..\..\Libraries\startup\DeviceSupport\MDK-ARM -I ..\..\Libraries\startup\DeviceSupport -I ..\..\Libraries\drives\inc -I ..\..\Libraries\drives\src -I ..\..\Libraries\seekfree -I ..\..\Libraries\FatFs -I ..\..\Libraries\FatFs\option -I ..\Self\inc -I ..\Self\src -D__UVISION_VERSION="521" -DMK60DN512xxx10 -DMK60DN-o .\objects\island.o --omf_browse .\objects\island.crf --depend .\objects\island.d)
 I (..\Self\inc\Island.h)(0x5AA527C7)
 I (..\..\Libraries\drives\inc\common.h)(0x5A6D8D66)
 I (..\..\Libraries\startup\DeviceSupport\MK60D10.h)(0x59C09B65)

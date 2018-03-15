@@ -12,7 +12,7 @@ int16_t leftSpeed, rightSpeed;
 //bool stop;
 //int16_t speedAroundBarrier;
 //int16_t speedInRi
-uint16_t speedcontrol=75;
+uint16_t speedcontrol=90;
 static int16_t SpeedControlPID(PID *pid);
 static void SpeedControlFilter(int16_t newValue, PID* pid);
 

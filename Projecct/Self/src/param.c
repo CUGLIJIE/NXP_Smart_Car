@@ -7,10 +7,10 @@ void paraminit()
 {
 	  encoder_on=TRUE;
 	
-	  leftPid.kp = 130;
-    leftPid.ki = 15;
-    leftPid.kd = 25;
-    rightPid.kp = 130;
-    rightPid.ki = 15;
-    rightPid.kd = 25;
+	  leftPid.kp = 125;
+    leftPid.ki = 20;
+    leftPid.kd = 15;
+    rightPid.kp = 125;
+    rightPid.ki = 20;
+    rightPid.kd = 15;
 }
